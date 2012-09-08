@@ -15,6 +15,3 @@
 //
 
 #import "extThree20XML/TTURLXMLResponse.h"
-
-// Vendors
-#import "extThree20XML/TTXMLParser.h"

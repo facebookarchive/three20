@@ -1,0 +1,43 @@
+extFacebook
+===========
+
+This extension provides support for accessing Facebook data in the form of Objects.
+
+Using it in your App
+--------------------
+
+Add the `extThree20Facebook.xcodeproj` file to your project. Add `extThree20Facebook+<vendor>.a` to your
+"Link Binary With Libraries" phase, and add `extThree20Facebook+<vendor>` as a dependency.
+
+Import the following into your precompiled header or wherever you need access to
+`FBSessionDelegate`. Your application should implement this delegate to receive session callbacks.
+
+    #import "extThree20Facebook/extThree20Facebook.h"
+
+Breakdown
+---------
+
+This library provides the ease of using Facebook Objects and Connections. When you include extFacebook in your app, you 
+can access the classes that represents Facebook objects and connections. These classes helps in posting or reading data from facebook graph API.
+
+Example
+-------
+
+GET your Facebook ALBUM:
+
+    // Load the albums using following code
+    // FB_CONNECTION_ALBUMS is a string that represents the type of object
+
+    FbConnection *albums = [model.user setupConnection:FB_CONNECTION_ALBUMS];
+    [albums registerDelegate:self];
+    [albums load];
+
+When ALBUM data got loaded, the response object is received in remoteObject(..) method that you have to override. It will look like as follows:
+
+    (void)remoteObject:(TTRemoteObject *)remoteObject didFinishLoadForRequest:(TTURLRequest *)request {
+        
+          if ( conn.data.objectClass == [FbAlbum class] ) {
+              // Access ALBUM data here
+          }
+    }
+

@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2011 Facebook
+// Copyright 2012 RIKSOF
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,12 +14,17 @@
 // limitations under the License.
 //
 
+// This library requires libxml2 headers in search path
+LIBRARY_ADDITIONAL_PATHS = "/usr/include/libxml2"
+
 #include "../common/Configurations/Library.xcconfig"
 #include "../common/Configurations/Libraries.xcconfig"
 
-BASE_PRODUCT_NAME       = extThree20XML
-PRODUCT_NAME            = $(BASE_PRODUCT_NAME)
+BASE_PRODUCT_NAME       = extThree20RemoteObject
+PRODUCT_NAME            = $(BASE_PRODUCT_NAME)+XML
 BUILD_LIBRARY_VERSION   = 1.0
 
 PRIVATE_HEADERS_FOLDER_PATH   = /../three20/$(BASE_PRODUCT_NAME)/private
 PUBLIC_HEADERS_FOLDER_PATH    = /../three20/$(BASE_PRODUCT_NAME)
+
+GCC_PREFIX_HEADER             = $(SRCROOT)/Headers/$(BASE_PRODUCT_NAME)+XML_Prefix.pch

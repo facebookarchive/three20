@@ -1,0 +1,10 @@
+//
+// Prefix header for all source files of the 'Three20Core' target in the 'Three20Core' project
+//
+
+#ifdef __OBJC__
+  #import <Foundation/Foundation.h>
+#endif
+
+// Build with TTXMLParser
+#define EXTXML_TTXMLPARSER 1

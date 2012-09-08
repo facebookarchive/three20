@@ -1,0 +1,1281 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		20405F1715681E0A00FC3635 /* FbLink.h in Headers */ = {isa = PBXBuildFile; fileRef = 20405F1515681E0A00FC3635 /* FbLink.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20405F1815681E0A00FC3635 /* FbLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 20405F1615681E0A00FC3635 /* FbLink.m */; };
+		20405F781568812200FC3635 /* FbPost.h in Headers */ = {isa = PBXBuildFile; fileRef = 20405F761568812200FC3635 /* FbPost.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20405F791568812200FC3635 /* FbPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 20405F771568812200FC3635 /* FbPost.m */; };
+		2096AE4D155273360005A25F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20843E8B1534A19900E7BAC1 /* SenTestingKit.framework */; };
+		2096AE4E155273360005A25F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20843E731534A19900E7BAC1 /* UIKit.framework */; };
+		2096AE4F155273360005A25F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20843E751534A19900E7BAC1 /* Foundation.framework */; };
+		2096AE52155273360005A25F /* libextThree20Facebook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2096AE3F155273350005A25F /* libextThree20Facebook.a */; };
+		2096AE58155273360005A25F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2096AE56155273360005A25F /* InfoPlist.strings */; };
+		2096AE5B155273360005A25F /* extThree30FacebookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2096AE5A155273360005A25F /* extThree30FacebookTests.m */; };
+		2096AF0A15527DF60005A25F /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 20843F73153568DD00E7BAC1 /* Facebook.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2096AF0B15527DF60005A25F /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 20843F77153568DD00E7BAC1 /* FBDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2096AF0C15527DF60005A25F /* FBFrictionlessRequestSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 20843F79153568DD00E7BAC1 /* FBFrictionlessRequestSettings.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2096AF0D15527DF60005A25F /* FBLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 20843F7B153568DD00E7BAC1 /* FBLoginDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2096AF0E15527DF60005A25F /* FBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 20843F7D153568DD00E7BAC1 /* FBRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2096AF0F15527DF60005A25F /* FbAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 208440431535D5F700E7BAC1 /* FbAccount.m */; };
+		2096AF1015527DF60005A25F /* FbApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 208440B81536735400E7BAC1 /* FbApplication.m */; };
+		2096AF1115527DF60005A25F /* FbAchievement.m in Sources */ = {isa = PBXBuildFile; fileRef = 208440A11535EC2C00E7BAC1 /* FbAchievement.m */; };
+		2096AF1215527DF60005A25F /* FbAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 208440AC15366E1300E7BAC1 /* FbAlbum.m */; };
+		2096AF1315527DF60005A25F /* FbCheckin.m in Sources */ = {isa = PBXBuildFile; fileRef = 208440B01536717A00E7BAC1 /* FbCheckin.m */; };
+		2096AF1415527DF60005A25F /* FbConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 208440A8153606DE00E7BAC1 /* FbConnection.m */; };
+		2096AF1515527DF60005A25F /* FbDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 208440361535CDCB00E7BAC1 /* FbDateTime.m */; };
+		2096AF1615527DF60005A25F /* FbDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 208440391535CDEA00E7BAC1 /* FbDate.m */; };
+		2096AF1715527DF60005A25F /* FbObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2084402E15359EF800E7BAC1 /* FbObject.m */; };
+		2096AF1815527DF60005A25F /* FbObjectConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2084403C1535D2FE00E7BAC1 /* FbObjectConnection.m */; };
+		2096AF1915527DF60005A25F /* FbPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 208440B4153672AA00E7BAC1 /* FbPage.m */; };
+		2096AF1A15527DF60005A25F /* FbParentCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2084401215358D2B00E7BAC1 /* FbParentCollection.m */; };
+		2096AF1B15527DF60005A25F /* FbParentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2084401415358D2B00E7BAC1 /* FbParentModel.m */; };
+		2096AF1C15527DF60005A25F /* FbUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2084401C1535917700E7BAC1 /* FbUser.m */; };
+		2096AF1D15527DF60005A25F /* extThree20Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 2084401815358EE800E7BAC1 /* extThree20Facebook.m */; };
+		2096AF1E15527E2C0005A25F /* Facebook.h in Headers */ = {isa = PBXBuildFile; fileRef = 20843F72153568DD00E7BAC1 /* Facebook.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2096AF1F15527E2C0005A25F /* FBConnect.h in Headers */ = {isa = PBXBuildFile; fileRef = 20843F74153568DD00E7BAC1 /* FBConnect.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2096AF2015527E2C0005A25F /* FBDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 20843F76153568DD00E7BAC1 /* FBDialog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2096AF2115527E2C0005A25F /* FBFrictionlessRequestSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = 20843F78153568DD00E7BAC1 /* FBFrictionlessRequestSettings.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2096AF2215527E2C0005A25F /* FBLoginDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 20843F7A153568DD00E7BAC1 /* FBLoginDialog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2096AF2315527E2C0005A25F /* FBRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 20843F7C153568DD00E7BAC1 /* FBRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2096AF2415527E2C0005A25F /* FbAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 208440421535D5F600E7BAC1 /* FbAccount.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2096AF2515527E2C0005A25F /* FbApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 208440B71536735400E7BAC1 /* FbApplication.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2096AF2615527E2C0005A25F /* FbAchievement.h in Headers */ = {isa = PBXBuildFile; fileRef = 208440A01535EC2C00E7BAC1 /* FbAchievement.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2096AF2715527E2C0005A25F /* FbAlbum.h in Headers */ = {isa = PBXBuildFile; fileRef = 208440AB15366E1300E7BAC1 /* FbAlbum.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2096AF2815527E2C0005A25F /* FbCheckin.h in Headers */ = {isa = PBXBuildFile; fileRef = 208440AF1536717A00E7BAC1 /* FbCheckin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2096AF2915527E2C0005A25F /* FbConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 208440A7153606DE00E7BAC1 /* FbConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2096AF2A15527E2C0005A25F /* FbDateTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 208440351535CDCB00E7BAC1 /* FbDateTime.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2096AF2B15527E2C0005A25F /* FbDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 208440381535CDE900E7BAC1 /* FbDate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2096AF2C15527E2C0005A25F /* FbObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 2084402D15359EF800E7BAC1 /* FbObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2096AF2D15527E2C0005A25F /* FbObjectConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 2084403B1535D2FE00E7BAC1 /* FbObjectConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2096AF2E15527E2C0005A25F /* FbPage.h in Headers */ = {isa = PBXBuildFile; fileRef = 208440B3153672AA00E7BAC1 /* FbPage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2096AF2F15527E2C0005A25F /* FbParentCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 2084401115358D2B00E7BAC1 /* FbParentCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2096AF3015527E2C0005A25F /* FbParentModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2084401315358D2B00E7BAC1 /* FbParentModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2096AF3115527E2C0005A25F /* FbUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 2084401B1535917700E7BAC1 /* FbUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2096AF3215527E2C0005A25F /* extThree20Facebook.h in Headers */ = {isa = PBXBuildFile; fileRef = 2084401715358EE700E7BAC1 /* extThree20Facebook.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2096AFAE15527F430005A25F /* extThree20Facebook-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 20843EB01534A2CC00E7BAC1 /* extThree20Facebook-Prefix.pch */; };
+		2096AFB61553F9230005A25F /* FbScore.h in Headers */ = {isa = PBXBuildFile; fileRef = 2096AFB41553F9230005A25F /* FbScore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2096AFB71553F9230005A25F /* FbScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2096AFB51553F9230005A25F /* FbScore.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2096AE50155273360005A25F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20843E661534A19900E7BAC1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2096AE3E155273350005A25F;
+			remoteInfo = extThree30Facebook;
+		};
+		2096AECB1552749B0005A25F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
+			remoteInfo = Three20;
+		};
+		2096AECD1552749B0005A25F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
+			remoteInfo = Three20UnitTests;
+		};
+		2096AED41552749B0005A25F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3201088596B4756681693700 /* Three20UICommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
+			remoteInfo = Three20UICommon;
+		};
+		2096AED61552749B0005A25F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3201088596B4756681693700 /* Three20UICommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
+			remoteInfo = Three20UICommonUnitTests;
+		};
+		2096AEDC1552749B0005A25F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 320A737074758E53BA54BE90 /* Three20UINavigator.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
+			remoteInfo = Three20UINavigator;
+		};
+		2096AEDE1552749B0005A25F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 320A737074758E53BA54BE90 /* Three20UINavigator.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
+			remoteInfo = Three20UINavigatorUnitTests;
+		};
+		2096AEE41552749B0005A25F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
+			remoteInfo = Three20UI;
+		};
+		2096AEE61552749B0005A25F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
+			remoteInfo = Three20UIUnitTests;
+		};
+		2096AEEC1552749B0005A25F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
+			remoteInfo = Three20Style;
+		};
+		2096AEEE1552749B0005A25F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
+			remoteInfo = Three20StyleUnitTests;
+		};
+		2096AEF51552749B0005A25F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3206A0F794A6D7A3F259DBF0 /* extThree20JSON.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
+			remoteInfo = "extThree20JSON+SBJSON";
+		};
+		2096AEF71552749B0005A25F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3206A0F794A6D7A3F259DBF0 /* extThree20JSON.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6E645BD91187751200F08CB1;
+			remoteInfo = "extThree20JSON+YAJL";
+		};
+		2096AEF91552749B0005A25F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3206A0F794A6D7A3F259DBF0 /* extThree20JSON.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
+			remoteInfo = "extThree20JSONUnitTests+SBJSON";
+		};
+		2096AF011552749B0005A25F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3202FB20AB0767E35C1F0570 /* extThree20RemoteObject.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 20D454CA151E2C3A0043F785;
+			remoteInfo = extThree20RemoteObject;
+		};
+		2096AF031552749B0005A25F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3202FB20AB0767E35C1F0570 /* extThree20RemoteObject.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2089946115277359009E38AD;
+			remoteInfo = "extThree20RemoteObject+JSON";
+		};
+		2096AF051552749B0005A25F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3202FB20AB0767E35C1F0570 /* extThree20RemoteObject.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2089949115277391009E38AD;
+			remoteInfo = "extThree20RemoteObject+XML";
+		};
+		2096AF071552749B0005A25F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3202FB20AB0767E35C1F0570 /* extThree20RemoteObject.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 20D454DA151E2C3B0043F785;
+			remoteInfo = extThree20RemoteObjectTests;
+		};
+		2096AFAF15527F990005A25F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
+			remoteInfo = Three20;
+		};
+		2096AFB115527F990005A25F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3202FB20AB0767E35C1F0570 /* extThree20RemoteObject.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 20D454C9151E2C3A0043F785;
+			remoteInfo = extThree20RemoteObject;
+		};
+		20E7817E1560EBE800A96CE2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 320A2827FEC940B25BC42C60 /* Three20Core.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
+			remoteInfo = Three20Core;
+		};
+		20E781801560EBE800A96CE2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 320A2827FEC940B25BC42C60 /* Three20Core.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
+			remoteInfo = Three20CoreUnitTests;
+		};
+		20E7818F1560EBE800A96CE2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 320A5A189C235877202780D0 /* Three20Network.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
+			remoteInfo = Three20Network;
+		};
+		20E781911560EBE800A96CE2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 320A5A189C235877202780D0 /* Three20Network.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
+			remoteInfo = Three20NetworkUnitTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		20405F1515681E0A00FC3635 /* FbLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FbLink.h; sourceTree = "<group>"; };
+		20405F1615681E0A00FC3635 /* FbLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FbLink.m; sourceTree = "<group>"; };
+		20405F761568812200FC3635 /* FbPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FbPost.h; sourceTree = "<group>"; };
+		20405F771568812200FC3635 /* FbPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FbPost.m; sourceTree = "<group>"; };
+		20843E731534A19900E7BAC1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		20843E751534A19900E7BAC1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		20843E771534A19900E7BAC1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		20843E7B1534A19900E7BAC1 /* TTFacebookRemoteObject-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "TTFacebookRemoteObject-Info.plist"; sourceTree = "<group>"; };
+		20843E8B1534A19900E7BAC1 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		20843EAC1534A2CC00E7BAC1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
+		20843EAE1534A2CC00E7BAC1 /* UnitTests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = UnitTests.xcconfig; sourceTree = "<group>"; };
+		20843EB01534A2CC00E7BAC1 /* extThree20Facebook-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "extThree20Facebook-Prefix.pch"; sourceTree = "<group>"; };
+		20843F6E1534AE0000E7BAC1 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
+		20843F72153568DD00E7BAC1 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
+		20843F73153568DD00E7BAC1 /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facebook.m; sourceTree = "<group>"; };
+		20843F74153568DD00E7BAC1 /* FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBConnect.h; sourceTree = "<group>"; };
+		20843F75153568DD00E7BAC1 /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBDialog.bundle; sourceTree = "<group>"; };
+		20843F76153568DD00E7BAC1 /* FBDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBDialog.h; sourceTree = "<group>"; };
+		20843F77153568DD00E7BAC1 /* FBDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBDialog.m; sourceTree = "<group>"; };
+		20843F78153568DD00E7BAC1 /* FBFrictionlessRequestSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBFrictionlessRequestSettings.h; sourceTree = "<group>"; };
+		20843F79153568DD00E7BAC1 /* FBFrictionlessRequestSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBFrictionlessRequestSettings.m; sourceTree = "<group>"; };
+		20843F7A153568DD00E7BAC1 /* FBLoginDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginDialog.h; sourceTree = "<group>"; };
+		20843F7B153568DD00E7BAC1 /* FBLoginDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginDialog.m; sourceTree = "<group>"; };
+		20843F7C153568DD00E7BAC1 /* FBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBRequest.h; sourceTree = "<group>"; };
+		20843F7D153568DD00E7BAC1 /* FBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBRequest.m; sourceTree = "<group>"; };
+		20843FEC15356AC500E7BAC1 /* HomeScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreen.h; sourceTree = "<group>"; };
+		20843FED15356AC500E7BAC1 /* HomeScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreen.m; sourceTree = "<group>"; };
+		20843FEE15356AC500E7BAC1 /* HomeScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeScreen.xib; sourceTree = "<group>"; };
+		2084401115358D2B00E7BAC1 /* FbParentCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FbParentCollection.h; sourceTree = "<group>"; };
+		2084401215358D2B00E7BAC1 /* FbParentCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FbParentCollection.m; sourceTree = "<group>"; };
+		2084401315358D2B00E7BAC1 /* FbParentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FbParentModel.h; sourceTree = "<group>"; };
+		2084401415358D2B00E7BAC1 /* FbParentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FbParentModel.m; sourceTree = "<group>"; };
+		2084401715358EE700E7BAC1 /* extThree20Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extThree20Facebook.h; sourceTree = "<group>"; };
+		2084401815358EE800E7BAC1 /* extThree20Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = extThree20Facebook.m; sourceTree = "<group>"; };
+		2084401B1535917700E7BAC1 /* FbUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FbUser.h; sourceTree = "<group>"; };
+		2084401C1535917700E7BAC1 /* FbUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FbUser.m; sourceTree = "<group>"; };
+		2084402D15359EF800E7BAC1 /* FbObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FbObject.h; sourceTree = "<group>"; };
+		2084402E15359EF800E7BAC1 /* FbObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FbObject.m; sourceTree = "<group>"; };
+		208440351535CDCB00E7BAC1 /* FbDateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FbDateTime.h; sourceTree = "<group>"; };
+		208440361535CDCB00E7BAC1 /* FbDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FbDateTime.m; sourceTree = "<group>"; };
+		208440381535CDE900E7BAC1 /* FbDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FbDate.h; sourceTree = "<group>"; };
+		208440391535CDEA00E7BAC1 /* FbDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FbDate.m; sourceTree = "<group>"; };
+		2084403B1535D2FE00E7BAC1 /* FbObjectConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FbObjectConnection.h; sourceTree = "<group>"; };
+		2084403C1535D2FE00E7BAC1 /* FbObjectConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FbObjectConnection.m; sourceTree = "<group>"; };
+		208440421535D5F600E7BAC1 /* FbAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FbAccount.h; sourceTree = "<group>"; };
+		208440431535D5F700E7BAC1 /* FbAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FbAccount.m; sourceTree = "<group>"; };
+		208440A01535EC2C00E7BAC1 /* FbAchievement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FbAchievement.h; sourceTree = "<group>"; };
+		208440A11535EC2C00E7BAC1 /* FbAchievement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FbAchievement.m; sourceTree = "<group>"; };
+		208440A7153606DE00E7BAC1 /* FbConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FbConnection.h; sourceTree = "<group>"; };
+		208440A8153606DE00E7BAC1 /* FbConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FbConnection.m; sourceTree = "<group>"; };
+		208440AB15366E1300E7BAC1 /* FbAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FbAlbum.h; sourceTree = "<group>"; };
+		208440AC15366E1300E7BAC1 /* FbAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FbAlbum.m; sourceTree = "<group>"; };
+		208440AF1536717A00E7BAC1 /* FbCheckin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FbCheckin.h; sourceTree = "<group>"; };
+		208440B01536717A00E7BAC1 /* FbCheckin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FbCheckin.m; sourceTree = "<group>"; };
+		208440B3153672AA00E7BAC1 /* FbPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FbPage.h; sourceTree = "<group>"; };
+		208440B4153672AA00E7BAC1 /* FbPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FbPage.m; sourceTree = "<group>"; };
+		208440B71536735400E7BAC1 /* FbApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FbApplication.h; sourceTree = "<group>"; };
+		208440B81536735400E7BAC1 /* FbApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FbApplication.m; sourceTree = "<group>"; };
+		2096AE3F155273350005A25F /* libextThree20Facebook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libextThree20Facebook.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2096AE4C155273360005A25F /* extThree20FacebookTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = extThree20FacebookTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2096AE55155273360005A25F /* extThree30FacebookTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "extThree30FacebookTests-Info.plist"; sourceTree = "<group>"; };
+		2096AE57155273360005A25F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2096AE59155273360005A25F /* extThree30FacebookTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = extThree30FacebookTests.h; sourceTree = "<group>"; };
+		2096AE5A155273360005A25F /* extThree30FacebookTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = extThree30FacebookTests.m; sourceTree = "<group>"; };
+		2096AF09155274EB0005A25F /* Library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Library.xcconfig; sourceTree = "<group>"; };
+		2096AFB41553F9230005A25F /* FbScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FbScore.h; sourceTree = "<group>"; };
+		2096AFB51553F9230005A25F /* FbScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FbScore.m; sourceTree = "<group>"; };
+		3201088596B4756681693700 /* Three20UICommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UICommon.xcodeproj; path = ../Three20UICommon/Three20UICommon.xcodeproj; sourceTree = SOURCE_ROOT; };
+		3202FB20AB0767E35C1F0570 /* extThree20RemoteObject.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = extThree20RemoteObject.xcodeproj; path = ../extThree20RemoteObject/extThree20RemoteObject.xcodeproj; sourceTree = SOURCE_ROOT; };
+		3206A0F794A6D7A3F259DBF0 /* extThree20JSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = extThree20JSON.xcodeproj; path = ../extThree20JSON/extThree20JSON.xcodeproj; sourceTree = SOURCE_ROOT; };
+		320A2827FEC940B25BC42C60 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
+		320A5A189C235877202780D0 /* Three20Network.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Network.xcodeproj; path = ../Three20Network/Three20Network.xcodeproj; sourceTree = SOURCE_ROOT; };
+		320A737074758E53BA54BE90 /* Three20UINavigator.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UINavigator.xcodeproj; path = ../Three20UINavigator/Three20UINavigator.xcodeproj; sourceTree = SOURCE_ROOT; };
+		320AF8492C47A4D819F7C450 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.frameworks; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		320B6C86F11D9990244A9730 /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = ../Three20.bundle; sourceTree = SOURCE_ROOT; };
+		320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = ../Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
+		320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
+		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = ../Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2096AE3C155273350005A25F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2096AE48155273360005A25F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2096AE4D155273360005A25F /* SenTestingKit.framework in Frameworks */,
+				2096AE4E155273360005A25F /* UIKit.framework in Frameworks */,
+				2096AE4F155273360005A25F /* Foundation.framework in Frameworks */,
+				2096AE52155273360005A25F /* libextThree20Facebook.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		20405F0015681DEA00FC3635 /* FbLink */ = {
+			isa = PBXGroup;
+			children = (
+				20405F1515681E0A00FC3635 /* FbLink.h */,
+				20405F1615681E0A00FC3635 /* FbLink.m */,
+			);
+			name = FbLink;
+			sourceTree = "<group>";
+		};
+		20405F751568810000FC3635 /* FbPost */ = {
+			isa = PBXGroup;
+			children = (
+				20405F761568812200FC3635 /* FbPost.h */,
+				20405F771568812200FC3635 /* FbPost.m */,
+			);
+			name = FbPost;
+			sourceTree = "<group>";
+		};
+		20843E641534A19900E7BAC1 = {
+			isa = PBXGroup;
+			children = (
+				20843EA71534A2CC00E7BAC1 /* Classes */,
+				20843EAA1534A2CC00E7BAC1 /* Configurations */,
+				20843EAF1534A2CC00E7BAC1 /* Headers */,
+				20843EB11534A2CC00E7BAC1 /* Resources */,
+				20843E791534A19900E7BAC1 /* Other Sources */,
+				2096AE53155273360005A25F /* extThree30FacebookTests */,
+				20843E721534A19900E7BAC1 /* Frameworks */,
+				20843E701534A19900E7BAC1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		20843E701534A19900E7BAC1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2096AE3F155273350005A25F /* libextThree20Facebook.a */,
+				2096AE4C155273360005A25F /* extThree20FacebookTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		20843E721534A19900E7BAC1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3206A0F794A6D7A3F259DBF0 /* extThree20JSON.xcodeproj */,
+				3202FB20AB0767E35C1F0570 /* extThree20RemoteObject.xcodeproj */,
+				3201088596B4756681693700 /* Three20UICommon.xcodeproj */,
+				320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */,
+				320A737074758E53BA54BE90 /* Three20UINavigator.xcodeproj */,
+				320A2827FEC940B25BC42C60 /* Three20Core.xcodeproj */,
+				320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */,
+				320AF8492C47A4D819F7C450 /* QuartzCore.framework */,
+				320A5A189C235877202780D0 /* Three20Network.xcodeproj */,
+				320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */,
+				20843E731534A19900E7BAC1 /* UIKit.framework */,
+				20843E751534A19900E7BAC1 /* Foundation.framework */,
+				20843E771534A19900E7BAC1 /* CoreGraphics.framework */,
+				20843E8B1534A19900E7BAC1 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		20843E791534A19900E7BAC1 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				20843E7A1534A19900E7BAC1 /* Supporting Files */,
+			);
+			name = "Other Sources";
+			path = TTFacebookRemoteObject;
+			sourceTree = "<group>";
+		};
+		20843E7A1534A19900E7BAC1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				20843F6E1534AE0000E7BAC1 /* main.m */,
+				20843E7B1534A19900E7BAC1 /* TTFacebookRemoteObject-Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		20843EA71534A2CC00E7BAC1 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				20843F70153568AB00E7BAC1 /* Libraries */,
+				2084400F15358A8300E7BAC1 /* Models */,
+				20843FE415356A2700E7BAC1 /* ViewsAndControllers */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		20843EAA1534A2CC00E7BAC1 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				2096AF09155274EB0005A25F /* Library.xcconfig */,
+				20843EAC1534A2CC00E7BAC1 /* Project.xcconfig */,
+				20843EAE1534A2CC00E7BAC1 /* UnitTests.xcconfig */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
+		20843EAF1534A2CC00E7BAC1 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				20843EB01534A2CC00E7BAC1 /* extThree20Facebook-Prefix.pch */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		20843EB11534A2CC00E7BAC1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				320B6C86F11D9990244A9730 /* Three20.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		20843F70153568AB00E7BAC1 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				20843F71153568BD00E7BAC1 /* facebook-ios */,
+			);
+			name = Libraries;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		20843F71153568BD00E7BAC1 /* facebook-ios */ = {
+			isa = PBXGroup;
+			children = (
+				20843F72153568DD00E7BAC1 /* Facebook.h */,
+				20843F73153568DD00E7BAC1 /* Facebook.m */,
+				20843F74153568DD00E7BAC1 /* FBConnect.h */,
+				20843F75153568DD00E7BAC1 /* FBDialog.bundle */,
+				20843F76153568DD00E7BAC1 /* FBDialog.h */,
+				20843F77153568DD00E7BAC1 /* FBDialog.m */,
+				20843F78153568DD00E7BAC1 /* FBFrictionlessRequestSettings.h */,
+				20843F79153568DD00E7BAC1 /* FBFrictionlessRequestSettings.m */,
+				20843F7A153568DD00E7BAC1 /* FBLoginDialog.h */,
+				20843F7B153568DD00E7BAC1 /* FBLoginDialog.m */,
+				20843F7C153568DD00E7BAC1 /* FBRequest.h */,
+				20843F7D153568DD00E7BAC1 /* FBRequest.m */,
+			);
+			name = "facebook-ios";
+			sourceTree = "<group>";
+		};
+		20843FE415356A2700E7BAC1 /* ViewsAndControllers */ = {
+			isa = PBXGroup;
+			children = (
+				20843FEB15356A9400E7BAC1 /* HomeScreen */,
+			);
+			name = ViewsAndControllers;
+			sourceTree = "<group>";
+		};
+		20843FEB15356A9400E7BAC1 /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				20843FEC15356AC500E7BAC1 /* HomeScreen.h */,
+				20843FED15356AC500E7BAC1 /* HomeScreen.m */,
+				20843FEE15356AC500E7BAC1 /* HomeScreen.xib */,
+			);
+			name = HomeScreen;
+			sourceTree = "<group>";
+		};
+		2084400F15358A8300E7BAC1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2084403E1535D56E00E7BAC1 /* FbAccount */,
+				208440B61536732700E7BAC1 /* FbApplication */,
+				2084409F1535EC0300E7BAC1 /* FbAchievement */,
+				208440AA153660D600E7BAC1 /* FbAlbum */,
+				208440AE1536712300E7BAC1 /* FbCheckin */,
+				208440A6153606B500E7BAC1 /* FbConnection */,
+				208440341535CDA300E7BAC1 /* FbDate */,
+				20405F0015681DEA00FC3635 /* FbLink */,
+				2084402C15359ED700E7BAC1 /* FbObject */,
+				208440B21536728600E7BAC1 /* FbPage */,
+				2084401015358AB000E7BAC1 /* FbParentModel */,
+				20405F751568810000FC3635 /* FbPost */,
+				2096AFB31553F8EB0005A25F /* FbScore */,
+				2084401A1535914F00E7BAC1 /* FbUser */,
+				2084401715358EE700E7BAC1 /* extThree20Facebook.h */,
+				2084401815358EE800E7BAC1 /* extThree20Facebook.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		2084401015358AB000E7BAC1 /* FbParentModel */ = {
+			isa = PBXGroup;
+			children = (
+				2084401115358D2B00E7BAC1 /* FbParentCollection.h */,
+				2084401215358D2B00E7BAC1 /* FbParentCollection.m */,
+				2084401315358D2B00E7BAC1 /* FbParentModel.h */,
+				2084401415358D2B00E7BAC1 /* FbParentModel.m */,
+			);
+			name = FbParentModel;
+			sourceTree = "<group>";
+		};
+		2084401A1535914F00E7BAC1 /* FbUser */ = {
+			isa = PBXGroup;
+			children = (
+				2084401B1535917700E7BAC1 /* FbUser.h */,
+				2084401C1535917700E7BAC1 /* FbUser.m */,
+			);
+			name = FbUser;
+			sourceTree = "<group>";
+		};
+		2084402C15359ED700E7BAC1 /* FbObject */ = {
+			isa = PBXGroup;
+			children = (
+				2084402D15359EF800E7BAC1 /* FbObject.h */,
+				2084402E15359EF800E7BAC1 /* FbObject.m */,
+				2084403B1535D2FE00E7BAC1 /* FbObjectConnection.h */,
+				2084403C1535D2FE00E7BAC1 /* FbObjectConnection.m */,
+			);
+			name = FbObject;
+			sourceTree = "<group>";
+		};
+		208440341535CDA300E7BAC1 /* FbDate */ = {
+			isa = PBXGroup;
+			children = (
+				208440351535CDCB00E7BAC1 /* FbDateTime.h */,
+				208440361535CDCB00E7BAC1 /* FbDateTime.m */,
+				208440381535CDE900E7BAC1 /* FbDate.h */,
+				208440391535CDEA00E7BAC1 /* FbDate.m */,
+			);
+			name = FbDate;
+			sourceTree = "<group>";
+		};
+		2084403E1535D56E00E7BAC1 /* FbAccount */ = {
+			isa = PBXGroup;
+			children = (
+				208440421535D5F600E7BAC1 /* FbAccount.h */,
+				208440431535D5F700E7BAC1 /* FbAccount.m */,
+			);
+			name = FbAccount;
+			sourceTree = "<group>";
+		};
+		2084409F1535EC0300E7BAC1 /* FbAchievement */ = {
+			isa = PBXGroup;
+			children = (
+				208440A01535EC2C00E7BAC1 /* FbAchievement.h */,
+				208440A11535EC2C00E7BAC1 /* FbAchievement.m */,
+			);
+			name = FbAchievement;
+			sourceTree = "<group>";
+		};
+		208440A6153606B500E7BAC1 /* FbConnection */ = {
+			isa = PBXGroup;
+			children = (
+				208440A7153606DE00E7BAC1 /* FbConnection.h */,
+				208440A8153606DE00E7BAC1 /* FbConnection.m */,
+			);
+			name = FbConnection;
+			sourceTree = "<group>";
+		};
+		208440AA153660D600E7BAC1 /* FbAlbum */ = {
+			isa = PBXGroup;
+			children = (
+				208440AB15366E1300E7BAC1 /* FbAlbum.h */,
+				208440AC15366E1300E7BAC1 /* FbAlbum.m */,
+			);
+			name = FbAlbum;
+			sourceTree = "<group>";
+		};
+		208440AE1536712300E7BAC1 /* FbCheckin */ = {
+			isa = PBXGroup;
+			children = (
+				208440AF1536717A00E7BAC1 /* FbCheckin.h */,
+				208440B01536717A00E7BAC1 /* FbCheckin.m */,
+			);
+			name = FbCheckin;
+			sourceTree = "<group>";
+		};
+		208440B21536728600E7BAC1 /* FbPage */ = {
+			isa = PBXGroup;
+			children = (
+				208440B3153672AA00E7BAC1 /* FbPage.h */,
+				208440B4153672AA00E7BAC1 /* FbPage.m */,
+			);
+			name = FbPage;
+			sourceTree = "<group>";
+		};
+		208440B61536732700E7BAC1 /* FbApplication */ = {
+			isa = PBXGroup;
+			children = (
+				208440B71536735400E7BAC1 /* FbApplication.h */,
+				208440B81536735400E7BAC1 /* FbApplication.m */,
+			);
+			name = FbApplication;
+			sourceTree = "<group>";
+		};
+		2096AE53155273360005A25F /* extThree30FacebookTests */ = {
+			isa = PBXGroup;
+			children = (
+				2096AE59155273360005A25F /* extThree30FacebookTests.h */,
+				2096AE5A155273360005A25F /* extThree30FacebookTests.m */,
+				2096AE54155273360005A25F /* Supporting Files */,
+			);
+			path = extThree30FacebookTests;
+			sourceTree = "<group>";
+		};
+		2096AE54155273360005A25F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2096AE55155273360005A25F /* extThree30FacebookTests-Info.plist */,
+				2096AE56155273360005A25F /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2096AEC71552749B0005A25F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2096AECC1552749B0005A25F /* libThree20.a */,
+				2096AECE1552749B0005A25F /* Three20UnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2096AED01552749B0005A25F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2096AED51552749B0005A25F /* libThree20UICommon.a */,
+				2096AED71552749B0005A25F /* UICommonUnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2096AED81552749B0005A25F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2096AEDD1552749B0005A25F /* libThree20UINavigator.a */,
+				2096AEDF1552749B0005A25F /* UINavigatorUnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2096AEE01552749B0005A25F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2096AEE51552749B0005A25F /* libThree20UI.a */,
+				2096AEE71552749B0005A25F /* UIUnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2096AEE81552749B0005A25F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2096AEED1552749B0005A25F /* libThree20Style.a */,
+				2096AEEF1552749B0005A25F /* StyleUnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2096AEF01552749B0005A25F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2096AEF61552749B0005A25F /* libextThree20JSON+SBJSON.a */,
+				2096AEF81552749B0005A25F /* libextThree20JSON+YAJL.a */,
+				2096AEFA1552749B0005A25F /* extJSONUnitTests+SBJSON.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2096AEFB1552749B0005A25F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2096AF021552749B0005A25F /* libextThree20RemoteObject.a */,
+				2096AF041552749B0005A25F /* libextThree20RemoteObject+JSON.a */,
+				2096AF061552749B0005A25F /* libextThree20RemoteObject+XML.a */,
+				2096AF081552749B0005A25F /* extThree20RemoteObjectTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2096AFB31553F8EB0005A25F /* FbScore */ = {
+			isa = PBXGroup;
+			children = (
+				2096AFB41553F9230005A25F /* FbScore.h */,
+				2096AFB51553F9230005A25F /* FbScore.m */,
+			);
+			name = FbScore;
+			sourceTree = "<group>";
+		};
+		20E781731560EBE800A96CE2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20E7817F1560EBE800A96CE2 /* libThree20Core.a */,
+				20E781811560EBE800A96CE2 /* CoreUnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		20E7818B1560EBE800A96CE2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20E781901560EBE800A96CE2 /* libThree20Network.a */,
+				20E781921560EBE800A96CE2 /* NetworkUnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2096AE3D155273350005A25F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2096AF1E15527E2C0005A25F /* Facebook.h in Headers */,
+				2096AF1F15527E2C0005A25F /* FBConnect.h in Headers */,
+				2096AF2015527E2C0005A25F /* FBDialog.h in Headers */,
+				2096AF2115527E2C0005A25F /* FBFrictionlessRequestSettings.h in Headers */,
+				2096AF2215527E2C0005A25F /* FBLoginDialog.h in Headers */,
+				2096AF2315527E2C0005A25F /* FBRequest.h in Headers */,
+				2096AF2415527E2C0005A25F /* FbAccount.h in Headers */,
+				2096AF2515527E2C0005A25F /* FbApplication.h in Headers */,
+				2096AF2615527E2C0005A25F /* FbAchievement.h in Headers */,
+				2096AF2715527E2C0005A25F /* FbAlbum.h in Headers */,
+				2096AF2815527E2C0005A25F /* FbCheckin.h in Headers */,
+				2096AF2915527E2C0005A25F /* FbConnection.h in Headers */,
+				20405F781568812200FC3635 /* FbPost.h in Headers */,
+				2096AF2A15527E2C0005A25F /* FbDateTime.h in Headers */,
+				2096AF2B15527E2C0005A25F /* FbDate.h in Headers */,
+				2096AF2C15527E2C0005A25F /* FbObject.h in Headers */,
+				2096AF2D15527E2C0005A25F /* FbObjectConnection.h in Headers */,
+				2096AF2E15527E2C0005A25F /* FbPage.h in Headers */,
+				2096AF2F15527E2C0005A25F /* FbParentCollection.h in Headers */,
+				20405F1715681E0A00FC3635 /* FbLink.h in Headers */,
+				2096AF3015527E2C0005A25F /* FbParentModel.h in Headers */,
+				2096AFB61553F9230005A25F /* FbScore.h in Headers */,
+				2096AF3115527E2C0005A25F /* FbUser.h in Headers */,
+				2096AF3215527E2C0005A25F /* extThree20Facebook.h in Headers */,
+				2096AFAE15527F430005A25F /* extThree20Facebook-Prefix.pch in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2096AE3E155273350005A25F /* extThree20Facebook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2096AE5C155273360005A25F /* Build configuration list for PBXNativeTarget "extThree20Facebook" */;
+			buildPhases = (
+				2096AE3B155273350005A25F /* Sources */,
+				2096AE3C155273350005A25F /* Frameworks */,
+				2096AE3D155273350005A25F /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2096AFB015527F990005A25F /* PBXTargetDependency */,
+				2096AFB215527F990005A25F /* PBXTargetDependency */,
+			);
+			name = extThree20Facebook;
+			productName = extThree30Facebook;
+			productReference = 2096AE3F155273350005A25F /* libextThree20Facebook.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		2096AE4B155273360005A25F /* extThree20FacebookTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2096AE5F155273360005A25F /* Build configuration list for PBXNativeTarget "extThree20FacebookTests" */;
+			buildPhases = (
+				2096AE47155273360005A25F /* Sources */,
+				2096AE48155273360005A25F /* Frameworks */,
+				2096AE49155273360005A25F /* Resources */,
+				2096AE4A155273360005A25F /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2096AE51155273360005A25F /* PBXTargetDependency */,
+			);
+			name = extThree20FacebookTests;
+			productName = extThree30FacebookTests;
+			productReference = 2096AE4C155273360005A25F /* extThree20FacebookTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		20843E661534A19900E7BAC1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 20843E691534A19900E7BAC1 /* Build configuration list for PBXProject "extThree20Facebook" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 20843E641534A19900E7BAC1;
+			productRefGroup = 20843E701534A19900E7BAC1 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 2096AEF01552749B0005A25F /* Products */;
+					ProjectRef = 3206A0F794A6D7A3F259DBF0 /* extThree20JSON.xcodeproj */;
+				},
+				{
+					ProductGroup = 2096AEFB1552749B0005A25F /* Products */;
+					ProjectRef = 3202FB20AB0767E35C1F0570 /* extThree20RemoteObject.xcodeproj */;
+				},
+				{
+					ProductGroup = 2096AEC71552749B0005A25F /* Products */;
+					ProjectRef = 320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */;
+				},
+				{
+					ProductGroup = 20E781731560EBE800A96CE2 /* Products */;
+					ProjectRef = 320A2827FEC940B25BC42C60 /* Three20Core.xcodeproj */;
+				},
+				{
+					ProductGroup = 20E7818B1560EBE800A96CE2 /* Products */;
+					ProjectRef = 320A5A189C235877202780D0 /* Three20Network.xcodeproj */;
+				},
+				{
+					ProductGroup = 2096AEE81552749B0005A25F /* Products */;
+					ProjectRef = 320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */;
+				},
+				{
+					ProductGroup = 2096AEE01552749B0005A25F /* Products */;
+					ProjectRef = 320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */;
+				},
+				{
+					ProductGroup = 2096AED01552749B0005A25F /* Products */;
+					ProjectRef = 3201088596B4756681693700 /* Three20UICommon.xcodeproj */;
+				},
+				{
+					ProductGroup = 2096AED81552749B0005A25F /* Products */;
+					ProjectRef = 320A737074758E53BA54BE90 /* Three20UINavigator.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				2096AE3E155273350005A25F /* extThree20Facebook */,
+				2096AE4B155273360005A25F /* extThree20FacebookTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		2096AECC1552749B0005A25F /* libThree20.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libThree20.a;
+			remoteRef = 2096AECB1552749B0005A25F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2096AECE1552749B0005A25F /* Three20UnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Three20UnitTests.octest;
+			remoteRef = 2096AECD1552749B0005A25F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2096AED51552749B0005A25F /* libThree20UICommon.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libThree20UICommon.a;
+			remoteRef = 2096AED41552749B0005A25F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2096AED71552749B0005A25F /* UICommonUnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UICommonUnitTests.octest;
+			remoteRef = 2096AED61552749B0005A25F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2096AEDD1552749B0005A25F /* libThree20UINavigator.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libThree20UINavigator.a;
+			remoteRef = 2096AEDC1552749B0005A25F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2096AEDF1552749B0005A25F /* UINavigatorUnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UINavigatorUnitTests.octest;
+			remoteRef = 2096AEDE1552749B0005A25F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2096AEE51552749B0005A25F /* libThree20UI.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libThree20UI.a;
+			remoteRef = 2096AEE41552749B0005A25F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2096AEE71552749B0005A25F /* UIUnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UIUnitTests.octest;
+			remoteRef = 2096AEE61552749B0005A25F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2096AEED1552749B0005A25F /* libThree20Style.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libThree20Style.a;
+			remoteRef = 2096AEEC1552749B0005A25F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2096AEEF1552749B0005A25F /* StyleUnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = StyleUnitTests.octest;
+			remoteRef = 2096AEEE1552749B0005A25F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2096AEF61552749B0005A25F /* libextThree20JSON+SBJSON.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libextThree20JSON+SBJSON.a";
+			remoteRef = 2096AEF51552749B0005A25F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2096AEF81552749B0005A25F /* libextThree20JSON+YAJL.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libextThree20JSON+YAJL.a";
+			remoteRef = 2096AEF71552749B0005A25F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2096AEFA1552749B0005A25F /* extJSONUnitTests+SBJSON.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "extJSONUnitTests+SBJSON.octest";
+			remoteRef = 2096AEF91552749B0005A25F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2096AF021552749B0005A25F /* libextThree20RemoteObject.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libextThree20RemoteObject.a;
+			remoteRef = 2096AF011552749B0005A25F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2096AF041552749B0005A25F /* libextThree20RemoteObject+JSON.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libextThree20RemoteObject+JSON.a";
+			remoteRef = 2096AF031552749B0005A25F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2096AF061552749B0005A25F /* libextThree20RemoteObject+XML.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libextThree20RemoteObject+XML.a";
+			remoteRef = 2096AF051552749B0005A25F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2096AF081552749B0005A25F /* extThree20RemoteObjectTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			name = extThree20RemoteObjectTests.octest;
+			path = extRemoteObjectTests.octest;
+			remoteRef = 2096AF071552749B0005A25F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		20E7817F1560EBE800A96CE2 /* libThree20Core.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libThree20Core.a;
+			remoteRef = 20E7817E1560EBE800A96CE2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		20E781811560EBE800A96CE2 /* CoreUnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CoreUnitTests.octest;
+			remoteRef = 20E781801560EBE800A96CE2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		20E781901560EBE800A96CE2 /* libThree20Network.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libThree20Network.a;
+			remoteRef = 20E7818F1560EBE800A96CE2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		20E781921560EBE800A96CE2 /* NetworkUnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NetworkUnitTests.octest;
+			remoteRef = 20E781911560EBE800A96CE2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2096AE49155273360005A25F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2096AE58155273360005A25F /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2096AE4A155273360005A25F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2096AE3B155273350005A25F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2096AF0A15527DF60005A25F /* Facebook.m in Sources */,
+				2096AF0B15527DF60005A25F /* FBDialog.m in Sources */,
+				2096AF0C15527DF60005A25F /* FBFrictionlessRequestSettings.m in Sources */,
+				2096AF0D15527DF60005A25F /* FBLoginDialog.m in Sources */,
+				2096AF0E15527DF60005A25F /* FBRequest.m in Sources */,
+				2096AF0F15527DF60005A25F /* FbAccount.m in Sources */,
+				2096AF1015527DF60005A25F /* FbApplication.m in Sources */,
+				2096AF1115527DF60005A25F /* FbAchievement.m in Sources */,
+				2096AF1215527DF60005A25F /* FbAlbum.m in Sources */,
+				2096AF1315527DF60005A25F /* FbCheckin.m in Sources */,
+				2096AF1415527DF60005A25F /* FbConnection.m in Sources */,
+				2096AF1515527DF60005A25F /* FbDateTime.m in Sources */,
+				2096AF1615527DF60005A25F /* FbDate.m in Sources */,
+				2096AF1715527DF60005A25F /* FbObject.m in Sources */,
+				2096AF1815527DF60005A25F /* FbObjectConnection.m in Sources */,
+				2096AF1915527DF60005A25F /* FbPage.m in Sources */,
+				2096AF1A15527DF60005A25F /* FbParentCollection.m in Sources */,
+				2096AF1B15527DF60005A25F /* FbParentModel.m in Sources */,
+				2096AF1C15527DF60005A25F /* FbUser.m in Sources */,
+				2096AF1D15527DF60005A25F /* extThree20Facebook.m in Sources */,
+				2096AFB71553F9230005A25F /* FbScore.m in Sources */,
+				20405F1815681E0A00FC3635 /* FbLink.m in Sources */,
+				20405F791568812200FC3635 /* FbPost.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2096AE47155273360005A25F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2096AE5B155273360005A25F /* extThree30FacebookTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2096AE51155273360005A25F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2096AE3E155273350005A25F /* extThree20Facebook */;
+			targetProxy = 2096AE50155273360005A25F /* PBXContainerItemProxy */;
+		};
+		2096AFB015527F990005A25F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Three20;
+			targetProxy = 2096AFAF15527F990005A25F /* PBXContainerItemProxy */;
+		};
+		2096AFB215527F990005A25F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = extThree20RemoteObject;
+			targetProxy = 2096AFB115527F990005A25F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2096AE56155273360005A25F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2096AE57155273360005A25F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		20843E9A1534A19900E7BAC1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20843EAC1534A2CC00E7BAC1 /* Project.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(BUILT_PRODUCTS_DIR)/../three20",
+					"$(BUILT_PRODUCTS_DIR)/../../three20",
+					../../Build/Products/three20,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		20843E9B1534A19900E7BAC1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20843EAC1534A2CC00E7BAC1 /* Project.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(BUILT_PRODUCTS_DIR)/../three20",
+					"$(BUILT_PRODUCTS_DIR)/../../three20",
+					../../Build/Products/three20,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2096AE5D155273360005A25F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2096AF09155274EB0005A25F /* Library.xcconfig */;
+			buildSettings = {
+				DSTROOT = /tmp/extThree30Facebook.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Headers/extThree20Facebook-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2096AE5E155273360005A25F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2096AF09155274EB0005A25F /* Library.xcconfig */;
+			buildSettings = {
+				DSTROOT = /tmp/extThree30Facebook.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Headers/extThree20Facebook-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		2096AE60155273360005A25F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20843EAE1534A2CC00E7BAC1 /* UnitTests.xcconfig */;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Headers/extThree20Facebook-Prefix.pch";
+				INFOPLIST_FILE = "extThree30FacebookTests/extThree30FacebookTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		2096AE61155273360005A25F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20843EAE1534A2CC00E7BAC1 /* UnitTests.xcconfig */;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Headers/extThree20Facebook-Prefix.pch";
+				INFOPLIST_FILE = "extThree30FacebookTests/extThree30FacebookTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		20843E691534A19900E7BAC1 /* Build configuration list for PBXProject "extThree20Facebook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20843E9A1534A19900E7BAC1 /* Debug */,
+				20843E9B1534A19900E7BAC1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2096AE5C155273360005A25F /* Build configuration list for PBXNativeTarget "extThree20Facebook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2096AE5D155273360005A25F /* Debug */,
+				2096AE5E155273360005A25F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2096AE5F155273360005A25F /* Build configuration list for PBXNativeTarget "extThree20FacebookTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2096AE60155273360005A25F /* Debug */,
+				2096AE61155273360005A25F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 20843E661534A19900E7BAC1 /* Project object */;
+}
