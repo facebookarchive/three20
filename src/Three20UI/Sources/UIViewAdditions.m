@@ -95,17 +95,21 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initInView:(UIView *)view location:(CGPoint)location {
   if (self = [super init]) {
-    _tapCount = 1;
-    _locationInWindow = location;
-    _previousLocationInWindow = location;
-
-    UIView *target = [view.window hitTest:_locationInWindow withEvent:nil];
-    _view = [target retain];
-    _window = [view.window retain];
-    _phase = UITouchPhaseBegan;
-    _touchFlags._firstTouchForView = 1;
-    _touchFlags._isTap = 1;
-    _timestamp = [NSDate timeIntervalSinceReferenceDate];
+	  /* This code commented out because it references variables that are no longer
+	   * exposed as of the iOS 6 SDK, preventing us from building.  I'm not even
+	   * sure that we need this particular category that Three20 adds, so let's
+	   * do a test pass with it commented out and see if everything still works the same. */
+//    _tapCount = 1;
+//    _locationInWindow = location;
+//    _previousLocationInWindow = location;
+//
+//    UIView *target = [view.window hitTest:_locationInWindow withEvent:nil];
+//    _view = [target retain];
+//    _window = [view.window retain];
+//    _phase = UITouchPhaseBegan;
+//    _touchFlags._firstTouchForView = 1;
+//    _touchFlags._isTap = 1;
+//    _timestamp = [NSDate timeIntervalSinceReferenceDate];
   }
   return self;
 }
@@ -113,8 +117,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)changeToPhase:(UITouchPhase)phase {
-  _phase = phase;
-  _timestamp = [NSDate timeIntervalSinceReferenceDate];
+//  _phase = phase;
+//  _timestamp = [NSDate timeIntervalSinceReferenceDate];
 }
 
 
