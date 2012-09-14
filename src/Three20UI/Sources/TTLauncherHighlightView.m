@@ -107,7 +107,7 @@ static const CGFloat kHighlightTextPadding = 20.0f;
                                constrainedToSize:CGSizeMake(width, superviewSize.height)].height;
 
   // If the highlighted rect is above center, put the text below it; otherwise, above it.
-  CGFloat y = 0.0;
+  CGFloat y = 0.0f;
   if (_highlightRect.origin.y + (_highlightRect.size.height / 2) < superviewSize.height / 2) {
     y = _highlightRect.origin.y + _highlightRect.size.height + kHighlightTextPadding;
 

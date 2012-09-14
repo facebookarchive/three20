@@ -30,7 +30,7 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
-static const CGFloat kMoreButtonMargin = 40;
+static const CGFloat kMoreButtonMargin = 40.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

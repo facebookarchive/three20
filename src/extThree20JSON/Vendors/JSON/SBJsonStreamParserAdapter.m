@@ -44,7 +44,7 @@
 @implementation SBJsonStreamParserAdapter
 
 @synthesize delegate;
-@synthesize skip;
+@synthesize levelsToSkip;
 
 #pragma mark Housekeeping
 
@@ -100,13 +100,9 @@
 			
 		case SBJsonStreamParserAdapterNone:
 			if ([obj isKindOfClass:[NSArray class]]) {
-				if (delegate && [delegate respondsToSelector:@selector(parser:foundArray:)]) {
-                    [delegate parser:parser foundArray:obj];
-                }
+				[delegate parser:parser foundArray:obj];
 			} else {
-				if (delegate && [delegate respondsToSelector:@selector(parser:foundObject:)]) {
-                    [delegate parser:parser foundObject:obj];
-                }
+				[delegate parser:parser foundObject:obj];
 			}				
 			break;
 
@@ -119,7 +115,7 @@
 #pragma mark Delegate methods
 
 - (void)parserFoundObjectStart:(SBJsonStreamParser*)parser {
-	if (++depth > skip) {
+	if (++depth > levelsToSkip) {
 		dict = [[NSMutableDictionary new] autorelease];
 		[stack addObject:dict];
 		currentType = SBJsonStreamParserAdapterObject;
@@ -131,7 +127,7 @@
 }
 
 - (void)parserFoundObjectEnd:(SBJsonStreamParser*)parser {
-	if (depth-- > skip) {
+	if (depth-- > levelsToSkip) {
 		id value = [dict retain];
 		[self pop];
 		[self parser:parser found:value];
@@ -140,7 +136,7 @@
 }
 
 - (void)parserFoundArrayStart:(SBJsonStreamParser*)parser {
-	if (++depth > skip) {
+	if (++depth > levelsToSkip) {
 		array = [[NSMutableArray new] autorelease];
 		[stack addObject:array];
 		currentType = SBJsonStreamParserAdapterArray;
@@ -148,7 +144,7 @@
 }
 
 - (void)parserFoundArrayEnd:(SBJsonStreamParser*)parser {
-	if (depth-- > skip) {
+	if (depth-- > levelsToSkip) {
 		id value = [array retain];
 		[self pop];
 		[self parser:parser found:value];

@@ -35,6 +35,7 @@
 @class SBJsonStreamWriter;
 
 @interface SBJsonStreamWriterState : NSObject
++ (id)sharedInstance;
 - (BOOL)isInvalidState:(SBJsonStreamWriter*)writer;
 - (void)appendSeparator:(SBJsonStreamWriter*)writer;
 - (BOOL)expectingKey:(SBJsonStreamWriter*)writer;
@@ -58,7 +59,6 @@
 @end
 
 @interface SBJsonStreamWriterStateStart : SBJsonStreamWriterState
-+ (id)sharedInstance;
 @end
 
 @interface SBJsonStreamWriterStateComplete : SBJsonStreamWriterState
@@ -66,10 +66,4 @@
 
 @interface SBJsonStreamWriterStateError : SBJsonStreamWriterState
 @end
-
-extern SBJsonStreamWriterStateStart *kSBJsonStreamWriterStateStart;
-extern SBJsonStreamWriterStateComplete *kSBJsonStreamWriterStateComplete;
-extern SBJsonStreamWriterStateError *kSBJsonStreamWriterStateError;
-extern SBJsonStreamWriterStateObjectStart *kSBJsonStreamWriterStateObjectStart;
-extern SBJsonStreamWriterStateArrayStart *kSBJsonStreamWriterStateArrayStart;
 

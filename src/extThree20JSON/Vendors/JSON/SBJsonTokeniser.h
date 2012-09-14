@@ -6,16 +6,16 @@
  modification, are permitted provided that the following conditions are
  met:
  
-   Redistributions of source code must retain the above copyright
-   notice, this list of conditions and the following disclaimer.
-  
-   Redistributions in binary form must reproduce the above copyright
-   notice, this list of conditions and the following disclaimer in the
-   documentation and/or other materials provided with the distribution.
+ Redistributions of source code must retain the above copyright
+ notice, this list of conditions and the following disclaimer.
  
-   Neither the name of the the author nor the names of its contributors
-   may be used to endorse or promote products derived from this software
-   without specific prior written permission.
+ Redistributions in binary form must reproduce the above copyright
+ notice, this list of conditions and the following disclaimer in the
+ documentation and/or other materials provided with the distribution.
+ 
+ Neither the name of the the author nor the names of its contributors
+ may be used to endorse or promote products derived from this software
+ without specific prior written permission.
  
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
@@ -33,38 +33,38 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-	sbjson_token_eof,
-	sbjson_token_error,
-	sbjson_token_object_start,
-	sbjson_token_key_value_separator,
-	sbjson_token_object_end,
-	sbjson_token_array_start,
-	sbjson_token_array_end,
-	sbjson_token_separator,
-	sbjson_token_string,
-	sbjson_token_string_encoded,	
-	sbjson_token_integer,
-	sbjson_token_double,
-	sbjson_token_true,
-	sbjson_token_false,
-	sbjson_token_null,
+    sbjson_token_error = -1,
+    sbjson_token_eof,
+    
+    sbjson_token_array_start,
+    sbjson_token_array_end,
+    
+    sbjson_token_object_start,
+    sbjson_token_object_end,
+
+    sbjson_token_separator,
+    sbjson_token_keyval_separator,
+    
+    sbjson_token_number,
+    sbjson_token_string,
+    sbjson_token_true,
+    sbjson_token_false,
+    sbjson_token_null,
+    
 } sbjson_token_t;
 
+@class SBJsonUTF8Stream;
+
 @interface SBJsonTokeniser : NSObject {
-	NSUInteger tokenStart, tokenLength;
-	NSMutableData *buf;
-	const char *bufbytes;
-	NSUInteger bufbytesLength;
-	NSString *error;
-	NSCharacterSet *illegalCharacterSet;
+@private
+    SBJsonUTF8Stream *_stream;
+    NSString *_error;
 }
 
-@property(copy, readonly) NSString *error;
+@property (copy) NSString *error;
 
-- (void)appendData:(NSData*)data;
+- (void)appendData:(NSData*)data_;
 
-- (sbjson_token_t)next;
-- (BOOL)getToken:(const char **)utf8 length:(NSUInteger*)length;
-- (NSString*)getDecodedStringToken;
+- (sbjson_token_t)getToken:(NSObject**)token;
 
 @end

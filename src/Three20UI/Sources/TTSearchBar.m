@@ -34,16 +34,16 @@
 #import "Three20Core/TTCorePreprocessorMacros.h"
 #import "Three20Core/TTGlobalCoreLocale.h"
 
-static const CGFloat kMarginX   = 5;
-static const CGFloat kMarginY   = 7;
-static const CGFloat kPaddingX  = 10;
-static const CGFloat kPaddingY  = 10;
-static const CGFloat kSpacingX  = 4;
+static const CGFloat kMarginX   = 5.0f;
+static const CGFloat kMarginY   = 7.0f;
+static const CGFloat kPaddingX  = 10.0f;
+static const CGFloat kPaddingY  = 10.0f;
+static const CGFloat kSpacingX  = 4.0f;
 
-static const CGFloat kButtonSpacing = 12;
-static const CGFloat kButtonHeight  = 30;
+static const CGFloat kButtonSpacing = 12.0f;
+static const CGFloat kButtonHeight  = 30.0f;
 
-static const CGFloat kIndexViewMargin = 4;
+static const CGFloat kIndexViewMargin = 4.0f;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////

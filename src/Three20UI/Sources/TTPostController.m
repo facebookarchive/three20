@@ -40,8 +40,8 @@
 #import "Three20Core/NSStringAdditions.h"
 #import "Three20Core/TTGlobalCore.h"
 
-static const CGFloat kMarginX = 5;
-static const CGFloat kMarginY = 6;
+static const CGFloat kMarginX = 5.0f;
+static const CGFloat kMarginY = 6.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -478,7 +478,7 @@ static const CGFloat kMarginY = 6;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UITextView*)textView {
-  self.view;
+  [self view];
   return _textView;
 }
 
@@ -486,7 +486,7 @@ static const CGFloat kMarginY = 6;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UINavigationBar*)navigatorBar {
   if (!_navigationBar) {
-    self.view;
+    [self view];
   }
   return _navigationBar;
 }
