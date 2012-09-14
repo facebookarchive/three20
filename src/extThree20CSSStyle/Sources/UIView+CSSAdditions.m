@@ -80,6 +80,10 @@ TT_FIX_CATEGORY_BUG(TTCSSViewAdditions)
   CGRect newFrame = self.frame;
 
   ////////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////
+  // Content mode.
+  self.contentMode = [anRuleSet contentModeAlignment];
+
+  ////////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////
   // Change Frame from CSS values if needed.
   newFrame.origin.x    = ( anRuleSet.left ? anRuleSet.origin.x : newFrame.origin.x );
   newFrame.origin.y    = ( anRuleSet.top ? anRuleSet.origin.y : newFrame.origin.y );

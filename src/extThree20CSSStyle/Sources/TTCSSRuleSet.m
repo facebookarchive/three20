@@ -370,6 +370,35 @@
     return [self.visibility isEqualToString:@"hidden"];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Return an formatted UIViewContentMode based on the defined
+// <tt>'margin-left'</tt>, <tt>'margin-right'</tt> and <tt>'vertical_align'</tt> properties.
+// If isn't setted return default left-top alignment.
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(UIViewContentMode)contentModeAlignment {
+    UIViewContentMode mode;
+    if ([vertical_align isEqualToString:@"top"]) {
+		mode |= UIViewContentModeTop;
+	}
+	else if ([vertical_align isEqualToString:@"middle"]) {
+		mode |= UIViewContentModeCenter;
+	}
+	else if ([vertical_align isEqualToString:@"bottom"]) {
+		mode |= UIViewContentModeBottom;
+	}
+    /////////
+    if ([margin_right isEqualToString:@"auto"] && ![margin_left isEqualToString:@"auto"]) {
+		mode |= UIViewContentModeLeft;
+	}
+	else if ([margin_right isEqualToString:@"auto"] && [margin_left isEqualToString:@"auto"]) {
+		mode |= UIViewContentModeCenter;
+	}
+	else if (![margin_right isEqualToString:@"auto"] && [margin_left isEqualToString:@"auto"]) {
+		mode |= UIViewContentModeRight;
+	}
+    return mode;
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Return an formatted UIControlContentVerticalAlignment based on the defined
 // <tt>'vertical_align'</tt> property. If isn't setted return default top alignment.

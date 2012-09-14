@@ -19,3 +19,6 @@ src/Three20UI/*.h
 extensions/
 
 *.pyc
+src/Three20Style/Sources/TTStyledTextParser.m
+
+src/Three20UI/Sources/TTActivityLabel.m

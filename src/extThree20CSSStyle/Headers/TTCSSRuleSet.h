@@ -301,4 +301,11 @@
  */
 -(UIControlContentHorizontalAlignment)contentHorizontalAlignment;
 
+/**
+ * Return an formatted UIViewContentMode based on the defined
+ * <tt>'margin-left'</tt>, <tt>'margin-right'</tt> and <tt>'vertical_align'</tt> properties.
+ * If isn't setted return default left-top alignment.
+ */
+-(UIViewContentMode)contentModeAlignment;
+
 @end
