@@ -1,0 +1,481 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		181CD9F015642B660058071C /* TTGridViewDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 181CD9EE15642B660058071C /* TTGridViewDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		181CD9F115642B660058071C /* TTGridViewRow.h in Headers */ = {isa = PBXBuildFile; fileRef = 181CD9EF15642B660058071C /* TTGridViewRow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		181CDA2615642D970058071C /* extThree20GridView_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 181CDA2515642D970058071C /* extThree20GridView_Prefix.pch */; };
+		1868EDDA1566A43700867778 /* TTGridViewRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 181CD9EB15642B460058071C /* TTGridViewRow.m */; };
+		1868F12D1566D7DC00867778 /* TTGridViewColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 1868F12B1566D7DC00867778 /* TTGridViewColumn.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1868F12E1566D7DC00867778 /* TTGridViewColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868F12C1566D7DC00867778 /* TTGridViewColumn.m */; };
+		18CB6099157904F600CE0B09 /* TTTableGridItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CB6097157904F600CE0B09 /* TTTableGridItem.m */; };
+		18CB60A21579051300CE0B09 /* TTTableGridItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 18CB60A11579051300CE0B09 /* TTTableGridItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		18CB618315790F4F00CE0B09 /* TTTableGridItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CB618115790F4F00CE0B09 /* TTTableGridItemCell.m */; };
+		18CB618515790F6100CE0B09 /* TTTableGridItemCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 18CB618415790F6100CE0B09 /* TTTableGridItemCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66E722D0129392DD007134B0 /* TTExtensionLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E722CC129392DD007134B0 /* TTExtensionLoader.m */; };
+		66E722D3129392EB007134B0 /* TTExtensionLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E722D1129392EB007134B0 /* TTExtensionLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		186BF3EB157E661500AD0D28 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18CB60CA1579093B00CE0B09 /* Three20UI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
+			remoteInfo = Three20UI;
+		};
+		18CB60CF1579093B00CE0B09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18CB60CA1579093B00CE0B09 /* Three20UI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
+			remoteInfo = Three20UI;
+		};
+		18CB60D11579093B00CE0B09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18CB60CA1579093B00CE0B09 /* Three20UI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
+			remoteInfo = Three20UIUnitTests;
+		};
+		18CB60F71579099400CE0B09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18CB60F11579099400CE0B09 /* extThree20CSSStyle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
+			remoteInfo = extThree20CSSStyle;
+		};
+		18CB60F91579099400CE0B09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18CB60F11579099400CE0B09 /* extThree20CSSStyle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
+			remoteInfo = extThree20CSSStyleUnitTests;
+		};
+		18CB60FC1579099D00CE0B09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18CB60F11579099400CE0B09 /* extThree20CSSStyle.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
+			remoteInfo = extThree20CSSStyle;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		181CD9EB15642B460058071C /* TTGridViewRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTGridViewRow.m; path = Sources/TTGridViewRow.m; sourceTree = "<group>"; };
+		181CD9EE15642B660058071C /* TTGridViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGridViewDataSource.h; path = Headers/TTGridViewDataSource.h; sourceTree = "<group>"; };
+		181CD9EF15642B660058071C /* TTGridViewRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGridViewRow.h; path = Headers/TTGridViewRow.h; sourceTree = "<group>"; };
+		181CDA2515642D970058071C /* extThree20GridView_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = extThree20GridView_Prefix.pch; path = Headers/extThree20GridView_Prefix.pch; sourceTree = "<group>"; };
+		1868F12B1566D7DC00867778 /* TTGridViewColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTGridViewColumn.h; sourceTree = "<group>"; };
+		1868F12C1566D7DC00867778 /* TTGridViewColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGridViewColumn.m; sourceTree = "<group>"; };
+		18CB6097157904F600CE0B09 /* TTTableGridItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTableGridItem.m; path = Sources/TTTableGridItem.m; sourceTree = "<group>"; };
+		18CB60A11579051300CE0B09 /* TTTableGridItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableGridItem.h; path = Headers/TTTableGridItem.h; sourceTree = "<group>"; };
+		18CB60CA1579093B00CE0B09 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = ../Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
+		18CB60F11579099400CE0B09 /* extThree20CSSStyle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = extThree20CSSStyle.xcodeproj; path = ../extThree20CSSStyle/extThree20CSSStyle.xcodeproj; sourceTree = SOURCE_ROOT; };
+		18CB618115790F4F00CE0B09 /* TTTableGridItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTableGridItemCell.m; path = Sources/TTTableGridItemCell.m; sourceTree = "<group>"; };
+		18CB618415790F6100CE0B09 /* TTTableGridItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableGridItemCell.h; path = Headers/TTTableGridItemCell.h; sourceTree = "<group>"; };
+		66E722CC129392DD007134B0 /* TTExtensionLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTExtensionLoader.m; path = Sources/TTExtensionLoader.m; sourceTree = "<group>"; };
+		66E722D1129392EB007134B0 /* TTExtensionLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionLoader.h; path = Headers/TTExtensionLoader.h; sourceTree = "<group>"; };
+		6E036B3611B38A420025E8EE /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.mdown; sourceTree = "<group>"; };
+		6E036B6111B38D1B0025E8EE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		6E55A4B31183CA80002768DE /* Library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Library.xcconfig; path = Configurations/Library.xcconfig; sourceTree = "<group>"; };
+		6E6454021184BDD500F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
+		6E85154F11B2E93E0071A4FD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6E85155511B2E94E0071A4FD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6EB460A61183D2AC00685649 /* UnitTests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = UnitTests.xcconfig; path = Configurations/UnitTests.xcconfig; sourceTree = "<group>"; };
+		BEF31F3A0F352DF5000DE5D2 /* libextThree20GridView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libextThree20GridView.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BEF31F380F352DF5000DE5D2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		18CB60CB1579093B00CE0B09 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				18CB60D01579093B00CE0B09 /* libThree20UI.a */,
+				18CB60D21579093B00CE0B09 /* UIUnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		18CB60F21579099400CE0B09 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				18CB60F81579099400CE0B09 /* libextThree20CSSStyle.a */,
+				18CB60FA1579099400CE0B09 /* extCSSStyleUnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BEF31F3A0F352DF5000DE5D2 /* libextThree20GridView.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				6E036B3611B38A420025E8EE /* README.mdown */,
+				66E722D1129392EB007134B0 /* TTExtensionLoader.h */,
+				66E722CC129392DD007134B0 /* TTExtensionLoader.m */,
+				181CDA2515642D970058071C /* extThree20GridView_Prefix.pch */,
+				6EB4609C1183D1E000685649 /* Source */,
+				6ED118E41183C38A0096AEBF /* Configurations */,
+				6E645A4311876CFE00F08CB1 /* Dependencies */,
+				6E036DD511B488A00025E8EE /* Frameworks */,
+				6E036D1F11B488690025E8EE /* Resources */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		6E036D1F11B488690025E8EE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		6E036DD511B488A00025E8EE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6E85154F11B2E93E0071A4FD /* Foundation.framework */,
+				6E85155511B2E94E0071A4FD /* CoreGraphics.framework */,
+				6E036B6111B38D1B0025E8EE /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6E645A4311876CFE00F08CB1 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				18CB60F11579099400CE0B09 /* extThree20CSSStyle.xcodeproj */,
+				18CB60CA1579093B00CE0B09 /* Three20UI.xcodeproj */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		6EB4609C1183D1E000685649 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				181CD9EE15642B660058071C /* TTGridViewDataSource.h */,
+				181CD9EF15642B660058071C /* TTGridViewRow.h */,
+				181CD9EB15642B460058071C /* TTGridViewRow.m */,
+				1868F12B1566D7DC00867778 /* TTGridViewColumn.h */,
+				1868F12C1566D7DC00867778 /* TTGridViewColumn.m */,
+				18CB60A11579051300CE0B09 /* TTTableGridItem.h */,
+				18CB6097157904F600CE0B09 /* TTTableGridItem.m */,
+				18CB618415790F6100CE0B09 /* TTTableGridItemCell.h */,
+				18CB618115790F4F00CE0B09 /* TTTableGridItemCell.m */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		6ED118E41183C38A0096AEBF /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				6E55A4B31183CA80002768DE /* Library.xcconfig */,
+				6E6454021184BDD500F08CB1 /* Project.xcconfig */,
+				6EB460A61183D2AC00685649 /* UnitTests.xcconfig */,
+			);
+			name = Configurations;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		BEF31F360F352DF5000DE5D2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66E722D3129392EB007134B0 /* TTExtensionLoader.h in Headers */,
+				181CD9F015642B660058071C /* TTGridViewDataSource.h in Headers */,
+				181CD9F115642B660058071C /* TTGridViewRow.h in Headers */,
+				181CDA2615642D970058071C /* extThree20GridView_Prefix.pch in Headers */,
+				1868F12D1566D7DC00867778 /* TTGridViewColumn.h in Headers */,
+				18CB60A21579051300CE0B09 /* TTTableGridItem.h in Headers */,
+				18CB618515790F6100CE0B09 /* TTTableGridItemCell.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		BEF31F390F352DF5000DE5D2 /* extThree20GridView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "extThree20GridView" */;
+			buildPhases = (
+				BEF31F360F352DF5000DE5D2 /* Headers */,
+				6E3C34AD118807DC0079637E /* Protect Copied Headers */,
+				BEF31F370F352DF5000DE5D2 /* Sources */,
+				668E667E131AE00F00ACE4AB /* Lint */,
+				BEF31F380F352DF5000DE5D2 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18CB60FD1579099D00CE0B09 /* PBXTargetDependency */,
+				186BF3EC157E661500AD0D28 /* PBXTargetDependency */,
+			);
+			name = extThree20GridView;
+			productName = Three20;
+			productReference = BEF31F3A0F352DF5000DE5D2 /* libextThree20GridView.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "extThree20GridView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 18CB60F21579099400CE0B09 /* Products */;
+					ProjectRef = 18CB60F11579099400CE0B09 /* extThree20CSSStyle.xcodeproj */;
+				},
+				{
+					ProductGroup = 18CB60CB1579093B00CE0B09 /* Products */;
+					ProjectRef = 18CB60CA1579093B00CE0B09 /* Three20UI.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				BEF31F390F352DF5000DE5D2 /* extThree20GridView */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		18CB60D01579093B00CE0B09 /* libThree20UI.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libThree20UI.a;
+			remoteRef = 18CB60CF1579093B00CE0B09 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		18CB60D21579093B00CE0B09 /* UIUnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UIUnitTests.octest;
+			remoteRef = 18CB60D11579093B00CE0B09 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		18CB60F81579099400CE0B09 /* libextThree20CSSStyle.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libextThree20CSSStyle.a;
+			remoteRef = 18CB60F71579099400CE0B09 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		18CB60FA1579099400CE0B09 /* extCSSStyleUnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = extCSSStyleUnitTests.octest;
+			remoteRef = 18CB60F91579099400CE0B09 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		668E667E131AE00F00ACE4AB /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/usr/bin/env python ../scripts/lint";
+			shellScript = "";
+			showEnvVarsInLog = 0;
+		};
+		6E3C34AD118807DC0079637E /* Protect Copied Headers */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Protect Copied Headers";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh ../scripts/Protect.command";
+			shellScript = "";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BEF31F370F352DF5000DE5D2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66E722D0129392DD007134B0 /* TTExtensionLoader.m in Sources */,
+				1868EDDA1566A43700867778 /* TTGridViewRow.m in Sources */,
+				1868F12E1566D7DC00867778 /* TTGridViewColumn.m in Sources */,
+				18CB6099157904F600CE0B09 /* TTTableGridItem.m in Sources */,
+				18CB618315790F4F00CE0B09 /* TTTableGridItemCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		186BF3EC157E661500AD0D28 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Three20UI;
+			targetProxy = 186BF3EB157E661500AD0D28 /* PBXContainerItemProxy */;
+		};
+		18CB60FD1579099D00CE0B09 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = extThree20CSSStyle;
+			targetProxy = 18CB60FC1579099D00CE0B09 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		6E92493F112C6F4000531F03 /* Internal */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E6454021184BDD500F08CB1 /* Project.xcconfig */;
+			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
+			};
+			name = Internal;
+		};
+		6E924940112C6F4000531F03 /* Internal */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					EXTJSON_SBJSON,
+					DEBUG,
+				);
+				PRODUCT_NAME = extThree20GridView;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Internal;
+		};
+		BEF31F3B0F352DF6000DE5D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					EXTJSON_SBJSON,
+					DEBUG,
+				);
+				PRODUCT_NAME = extThree20GridView;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		BEF31F3C0F352DF6000DE5D2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_PREPROCESSOR_DEFINITIONS = EXTJSON_SBJSON;
+				PRODUCT_NAME = extThree20GridView;
+				SDKROOT = iphoneos;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E6454021184BDD500F08CB1 /* Project.xcconfig */;
+			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E6454021184BDD500F08CB1 /* Project.xcconfig */;
+			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "extThree20GridView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEF31F3B0F352DF6000DE5D2 /* Debug */,
+				6E924940112C6F4000531F03 /* Internal */,
+				BEF31F3C0F352DF6000DE5D2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "extThree20GridView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				6E92493F112C6F4000531F03 /* Internal */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
