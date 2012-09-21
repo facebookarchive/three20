@@ -93,31 +93,34 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)resizeForKeyboard:(NSNotification*)notification appearing:(BOOL)appearing {
-	CGRect keyboardBounds;
-	[[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
+	CGRect keyboardBounds = CGRectZero;
 
-	CGPoint keyboardStart;
-	[[notification.userInfo objectForKey:UIKeyboardCenterBeginUserInfoKey] getValue:&keyboardStart];
+  CGRect keyboardStart;
+  [[notification.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] getValue:&keyboardStart];
 
-	CGPoint keyboardEnd;
-	[[notification.userInfo objectForKey:UIKeyboardCenterEndUserInfoKey] getValue:&keyboardEnd];
+  CGRect keyboardEnd;
+  [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEnd];
 
-	BOOL animated = keyboardStart.y != keyboardEnd.y;
-  if (animated) {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:TT_TRANSITION_DURATION];
-  }
+  keyboardBounds = [self.view convertRect:keyboardEnd fromView:self.view.window];
+  keyboardBounds = CGRectMake(0, 0, keyboardBounds.size.width, keyboardBounds.size.height);
 
-  if (appearing) {
-    [self keyboardWillAppear:animated withBounds:keyboardBounds];
+  BOOL animated = keyboardStart.origin.y != keyboardEnd.origin.y;
 
-  } else {
-    [self keyboardDidDisappear:animated withBounds:keyboardBounds];
-  }
+	if (animated) {
+		[UIView beginAnimations:nil context:nil];
+		[UIView setAnimationDuration:TT_TRANSITION_DURATION];
+	}
 
-  if (animated) {
-    [UIView commitAnimations];
-  }
+	if (appearing) {
+		[self keyboardWillAppear:animated withBounds:keyboardBounds];
+
+	} else {
+		[self keyboardDidDisappear:animated withBounds:keyboardBounds];
+	}
+
+	if (animated) {
+		[UIView commitAnimations];
+	}
 }
 
 
@@ -282,17 +285,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)keyboardDidShow:(NSNotification*)notification {
-#ifdef __IPHONE_3_21
+	CGRect keyboardBounds;
   CGRect frameStart;
   [[notification.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] getValue:&frameStart];
-
-  CGRect keyboardBounds = CGRectMake(0, 0, frameStart.size.width, frameStart.size.height);
-#else
-  CGRect keyboardBounds;
-  [[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
-#endif
-
-  [self keyboardDidAppear:YES withBounds:keyboardBounds];
+  frameStart = [self.view convertRect:frameStart fromView:self.view.window];
+  keyboardBounds = CGRectMake(0, 0, frameStart.size.width, frameStart.size.height);
+	[self keyboardDidAppear:YES withBounds:keyboardBounds];
 }
 
 
@@ -306,17 +304,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)keyboardWillHide:(NSNotification*)notification {
-#ifdef __IPHONE_3_21
+  CGRect keyboardBounds;
   CGRect frameEnd;
   [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&frameEnd];
-
-  CGRect keyboardBounds = CGRectMake(0, 0, frameEnd.size.width, frameEnd.size.height);
-#else
-  CGRect keyboardBounds;
-  [[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
-#endif
-
-  [self keyboardWillDisappear:YES withBounds:keyboardBounds];
+  frameEnd = [self.view convertRect:frameEnd fromView:self.view.window];
+  keyboardBounds = CGRectMake(0, 0, frameEnd.size.width, frameEnd.size.height);
+	[self keyboardWillDisappear:YES withBounds:keyboardBounds];
 }
 
 
