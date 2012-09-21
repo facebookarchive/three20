@@ -190,8 +190,7 @@ const NSTimeInterval TTURLRequestUseQueueTimeout = -1.0;
   [body appendData:[[NSString
                       stringWithFormat:@"Content-Length: %d\r\n", data.length]
                      dataUsingEncoding:_charsetForMultipart]];
-  [body appendData:[[NSString
-                      stringWithString:@"Content-Type: image/jpeg\r\n\r\n"]
+  [body appendData:[@"Content-Type: image/jpeg\r\n\r\n"
                      dataUsingEncoding:_charsetForMultipart]];
   [body appendData:data];
 		[body appendData:[endLine dataUsingEncoding:NSUTF8StringEncoding]];
@@ -313,7 +312,7 @@ const NSTimeInterval TTURLRequestUseQueueTimeout = -1.0;
     if (_multiPartForm) {
       return [NSString stringWithFormat:@"multipart/form-data; boundary=%@", kStringBoundary];      
     } else {
-      return [NSString stringWithFormat:@"application/x-www-form-urlencoded", kStringBoundary];            
+      return [NSString stringWithFormat:@"application/x-www-form-urlencoded"];
     }
     
   } else {

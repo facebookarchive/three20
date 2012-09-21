@@ -34,11 +34,9 @@ SKIP_INSTALL = YES
 //WARNING_CFLAGS = -Wno-unused-value
 
 FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/Developer/Library/Frameworks"
-IPHONEOS_DEPLOYMENT_TARGET = 3.0
+IPHONEOS_DEPLOYMENT_TARGET = 5.0
 SDKROOT = iphoneos
-// Required for older iOS devices (iPhone 3G)
 ARCHS = $(ARCHS_STANDARD_32_BIT)
-ARCHS[sdk=iphoneos*] = armv6 armv7
 
 // Linker Flags
 
@@ -52,7 +50,3 @@ GCC_WARN_SHADOW                         = YES
 GCC_WARN_ABOUT_MISSING_NEWLINE          = YES
 GCC_WARN_UNUSED_FUNCTION                = YES
 GCC_WARN_UNUSED_LABEL                   = YES
-
-// THIS APPARENTLY FIXES HORRIBLE PROBLEMS WITH THE OPTIMIZER
-// ACCESSING BASIC PROPS IN UI
-OTHER_CFLAGS[arch=armv6] = -mno-thumb
