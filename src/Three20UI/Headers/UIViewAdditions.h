@@ -136,13 +136,6 @@
 - (void)removeAllSubviews;
 
 /**
- * WARNING: This depends on undocumented APIs and may be fragile.  For testing only.
- */
-#ifdef DEBUG
-- (void)simulateTapAtPoint:(CGPoint)location;
-#endif
-
-/**
  * Calculates the offset of this view from another view in screen coordinates.
  *
  * otherView should be a parent view of this view.

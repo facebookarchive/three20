@@ -282,15 +282,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)keyboardDidShow:(NSNotification*)notification {
-#ifdef __IPHONE_3_21
   CGRect frameStart;
   [[notification.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] getValue:&frameStart];
 
   CGRect keyboardBounds = CGRectMake(0, 0, frameStart.size.width, frameStart.size.height);
-#else
-  CGRect keyboardBounds;
-  [[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
-#endif
 
   [self keyboardDidAppear:YES withBounds:keyboardBounds];
 }
@@ -306,15 +301,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)keyboardWillHide:(NSNotification*)notification {
-#ifdef __IPHONE_3_21
   CGRect frameEnd;
   [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&frameEnd];
 
   CGRect keyboardBounds = CGRectMake(0, 0, frameEnd.size.width, frameEnd.size.height);
-#else
-  CGRect keyboardBounds;
-  [[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
-#endif
 
   [self keyboardWillDisappear:YES withBounds:keyboardBounds];
 }
