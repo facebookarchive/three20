@@ -23,7 +23,7 @@
  * This particular implementation uses a strict XML parser (NSXMLParser). It is not designed to
  * parse HTML pages that are likely to have invalid markup.
  */
-@interface TTURLXMLResponse : NSObject <TTURLResponse> {
+@interface TTURLXMLResponse : NSObject <TTURLResponse, NSXMLParserDelegate> {
   id    _rootObject;
   BOOL  _isRssFeed;
 }

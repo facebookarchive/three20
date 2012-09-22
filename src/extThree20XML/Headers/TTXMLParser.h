@@ -62,7 +62,7 @@ extern NSString* kCommonXMLType_Unknown;
  * not been optimized for speed or memory usage, and has only been tested with documents less than
  * one MB (megabyte) in size.
  */
-@interface TTXMLParser : NSXMLParser {
+@interface TTXMLParser : NSXMLParser<NSXMLParserDelegate> {
 @private
   id              _rootObject;
 
