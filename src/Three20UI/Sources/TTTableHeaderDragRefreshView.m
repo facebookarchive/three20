@@ -163,7 +163,7 @@
       [_lastUpdatedDate release];
        _lastUpdatedDate = [newDate retain];
     }
-   
+
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterShortStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];

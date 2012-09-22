@@ -55,7 +55,7 @@ TT_FIX_CATEGORY_BUG(UIWebViewAdditions)
   return CGRectMake(x, y, width, height);
 }
 
-#ifdef DEBUG
+#ifdef DEBUG_TOUCHES
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)simulateTapElement:(NSString*)query {
