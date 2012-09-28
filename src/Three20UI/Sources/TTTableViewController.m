@@ -656,28 +656,32 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UITableView*)tableView {
   if (nil == _tableView) {
+    UIColor *backgroundColor, *separatorColor;
+
     _tableView = [[TTTableView alloc] initWithFrame:self.view.bounds style:_tableViewStyle];
-    _tableView.autoresizingMask =  UIViewAutoresizingFlexibleWidth
-    | UIViewAutoresizingFlexibleHeight;
+    _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
 
-	UIColor* separatorColor = _tableViewStyle == UITableViewStyleGrouped
-	? TTSTYLEVAR(tableGroupedCellSeparatorColor)
-	: TTSTYLEVAR(tablePlainCellSeparatorColor);
-	if (separatorColor) {
-		_tableView.separatorColor = separatorColor;
-	}
+    if (_tableViewStyle == UITableViewStyleGrouped) {
+      separatorColor = TTSTYLEVAR(tableGroupedCellSeparatorColor);
+      backgroundColor = TTSTYLEVAR(tableGroupedBackgroundColor);
+      _tableView.separatorStyle = TTSTYLEVAR(tableGroupedCellSeparatorStyle);
+      _tableView.backgroundView = nil;
 
-	_tableView.separatorStyle = _tableViewStyle == UITableViewStyleGrouped
-	? TTSTYLEVAR(tableGroupedCellSeparatorStyle)
-	: TTSTYLEVAR(tablePlainCellSeparatorStyle);
+    } else {
+      separatorColor = TTSTYLEVAR(tablePlainCellSeparatorColor);
+      backgroundColor = TTSTYLEVAR(tablePlainBackgroundColor);
+      _tableView.separatorStyle = TTSTYLEVAR(tablePlainCellSeparatorStyle);
+    }
 
-    UIColor* backgroundColor = _tableViewStyle == UITableViewStyleGrouped
-    ? TTSTYLEVAR(tableGroupedBackgroundColor)
-    : TTSTYLEVAR(tablePlainBackgroundColor);
+    if (separatorColor) {
+      _tableView.separatorColor = separatorColor;
+    }
+
     if (backgroundColor) {
       _tableView.backgroundColor = backgroundColor;
       self.view.backgroundColor = backgroundColor;
     }
+
     [self.view addSubview:_tableView];
   }
   return _tableView;
