@@ -28,7 +28,7 @@
 
 static const CGFloat kKeySpacing = 12.0f;
 static const CGFloat kKeyWidth = 75.0f;
-
+static const CGFloat kAccessoryWidth = 20.0f;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -75,6 +75,9 @@ static const CGFloat kKeyWidth = 75.0f;
 
   CGFloat margin = [tableView tableCellMargin];
   CGFloat width = tableView.width - (kKeyWidth + kKeySpacing + kTableCellHPadding*2 + margin*2);
+
+  if (item.URL)
+    width -= kAccessoryWidth;
 
   CGSize detailTextSize = [item.text sizeWithFont:TTSTYLEVAR(tableSmallFont)
                                 constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
