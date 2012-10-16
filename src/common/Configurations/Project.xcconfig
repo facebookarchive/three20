@@ -21,5 +21,5 @@ IPHONEOS_DEPLOYMENT_TARGET = 4.0
 SDKROOT = iphoneos
 // Required for older iOS devices (iPhone 3G)
 ARCHS = $(ARCHS_STANDARD_32_BIT)
-ARCHS[sdk=iphoneos*] = armv6 armv7
+ARCHS[sdk=iphoneos*] = $(ARCHS_STANDARD_32_BIT)
 VALID_ARCHS = i386 armv6 armv7 armv7s
