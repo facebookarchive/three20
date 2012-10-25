@@ -138,9 +138,9 @@
 /**
  * WARNING: This depends on undocumented APIs and may be fragile.  For testing only.
  */
-#ifdef DEBUG
+#ifdef DEBUG_TOUCHES
 - (void)simulateTapAtPoint:(CGPoint)location;
-#endif
+#endif 
 
 /**
  * Calculates the offset of this view from another view in screen coordinates.

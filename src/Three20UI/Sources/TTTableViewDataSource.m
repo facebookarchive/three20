@@ -270,29 +270,21 @@
   else if ([object isKindOfClass:[TTTableItem class]]) {
     if ([object isKindOfClass:[TTTableMoreButton class]]) {
       return [TTTableMoreButtonCell class];
-
-<<<<<<< HEAD
     }
 
     else if ([object isKindOfClass:[TTTableSubtextItem class]]) {
-=======
+        return [TTTableSubtextItemCell class];
+
     } else if ([object isKindOfClass:[TTTableSettingsItem class]]) {
       return [TTTableSettingsItemCell class];
-
-    } else if ([object isKindOfClass:[TTTableSubtextItem class]]) {
->>>>>>> 089a89c07945bb34c04a672e0410ed639914dec7
-      return [TTTableSubtextItemCell class];
-
     }
 
     else if ([object isKindOfClass:[TTTableRightCaptionItem class]]) {
       return [TTTableRightCaptionItemCell class];
-
     }
 
     else if ([object isKindOfClass:[TTTableCaptionItem class]]) {
       return [TTTableCaptionItemCell class];
-
     }
 
     else if ([object isKindOfClass:[TTTableSubtitleItem class]]) {

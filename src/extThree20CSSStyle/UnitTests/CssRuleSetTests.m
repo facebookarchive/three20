@@ -19,7 +19,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#import "TTCSSRuleSet.h"
+#import "extThree20CSSStyle/TTCSSRuleSet.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"

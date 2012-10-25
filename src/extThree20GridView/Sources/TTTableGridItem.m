@@ -13,10 +13,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#import "TTTableGridItem.h"
+#import "extThree20GridView/TTTableGridItem.h"
 
 @implementation TTTableGridItem
-@synthesize dataSource = _dataSource;
+@synthesize dataSource = _dataSourcem, contentInset;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 +(id)initWithDataSource:(id<TTGridViewDataSource>)anDataSource {

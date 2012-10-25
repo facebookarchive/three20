@@ -27,7 +27,7 @@
  * An TTGridViewDataSource implementation that provides the
  * data to construct the grid.
  */
-@property (retain) <TTGridViewDataSource> dataSource;
+@property (retain) id<TTGridViewDataSource> dataSource;
 
 /**
  * The distance that the content view is inset from the

@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#import "TTTableGridItemCell.h"
+#import "extThree20GridView/TTTableGridItemCell.h"
 
 // UI
 #import "Three20UI/UIViewAdditions.h"
@@ -77,6 +77,7 @@
         [super setObject:object];
         TTTableGridItem* item = object;
         _grid.dataSource = item.dataSource;
+        _grid.contentInset = item.contentInset;
     }
 }
 

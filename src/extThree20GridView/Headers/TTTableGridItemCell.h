@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 #import <UIKit/UIKit.h>
-#import "TTTableGridItem.h"
+#import "extThree20GridView/TTTableGridItem.h"
 #import "TTGridViewRow.h"
 
 // UI

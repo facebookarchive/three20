@@ -22,12 +22,21 @@
 
 @interface TTTableGridItem : TTTableLinkedItem <TTTableItemSelectingClass> {
     id _dataSource;
+    UIEdgeInsets contentInset;
 }
 
 /**
  *
  */
 @property (retain) id<TTGridViewDataSource> dataSource;
+
+/**
+ * The distance that the content view is inset from the
+ * enclosing grid view. Use this property to add
+ * an area around the content. The unit of size is points.
+ * The default value is <tt>UIEdgeInsetsZero</tt>.
+ */
+@property (assign) UIEdgeInsets contentInset;
 
 /**
  *

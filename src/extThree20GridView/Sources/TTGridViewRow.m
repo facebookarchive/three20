@@ -70,7 +70,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(CGFloat)whatIsTheFlexibleSize {
-    return (self.frame.size.width - [self widthFixedContainers]) / [self howMuchFlexibleContainers];
+    return ( ( self.frame.size.width - _contentInset.left - _contentInset.right )
+                    - [self widthFixedContainers]) / [self howMuchFlexibleContainers];
 
 }
 
@@ -132,7 +133,14 @@
             content.top = _contentInset.top;
         }
         else if ([ruleSet.vertical_align isEqualToString:@"middle"]) {
-            content.centerY = roundf( anContainer.height / 2 );
+            NSLog(@"centerY: %f", roundf( anContainer.height / 2.0f ));
+            if ( roundf( anContainer.height / 2.0f ) == 0.00) {
+                NSLog(@"Stop!");
+            }
+            CGFloat valueA, valueB;
+            valueA = anContainer.frame.size.height;
+            valueB = 2.0;
+            content.centerY = valueA / valueB;//roundf( );
         }
         else if ([ruleSet.vertical_align isEqualToString:@"bottom"]) {
             content.bottom = roundf(anContainer.bottom);
@@ -146,7 +154,7 @@
         }
         else if ([ruleSet.margin_right isEqualToString:@"auto"] &&
                  [ruleSet.margin_left isEqualToString:@"auto"]) {
-            content.centerX = roundf( anContainer.width / 2 );
+            content.centerX = roundf( anContainer.width / 2.0f );
         }
         else if (![ruleSet.margin_right isEqualToString:@"auto"] &&
                   [ruleSet.margin_left isEqualToString:@"auto"]) {
