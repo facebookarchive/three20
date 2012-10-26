@@ -922,7 +922,7 @@
   if ([object respondsToSelector:@selector(URLValue)]) {
     NSString* URL = [object URLValue];
     if (URL) {
-      TTOpenURLFromView(URL, self.view);
+      TTOpenURLFromView(URL, self.tableView);
     }
   }
 }

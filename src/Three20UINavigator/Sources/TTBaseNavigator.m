@@ -141,13 +141,20 @@ __attribute__((weak_import));
 
   for (controller = view.viewController;
        nil != controller;
-       controller = controller.parentViewController) {
+       controller = controller.superController) {
     if ([controller conformsToProtocol:@protocol(TTNavigatorRootContainer)]) {
       container = (id<TTNavigatorRootContainer>)controller;
       break;
     }
 
     childController = controller;
+  }
+
+  if (container==nil) {
+    controller = [TTBaseNavigator globalNavigator].visibleViewController;
+    if ([controller conformsToProtocol:@protocol(TTNavigatorRootContainer)]) {
+      container = (id<TTNavigatorRootContainer>)controller;
+    }
   }
 
   TTBaseNavigator* navigator = [container getNavigatorForController:childController];
@@ -883,12 +890,20 @@ __attribute__((weak_import));
   }
   [controller persistNavigationPath:path];
 
-  if (controller.modalViewController
-      && controller.modalViewController.parentViewController == controller) {
-    [self persistController:controller.modalViewController path:path];
+  UIViewController *modalController = controller.modalViewController;
+  if (modalController) {
+    UIViewController *parentViewController = [modalController
+                                              respondsToSelector:
+                                              @selector(presentingViewController)]
+    ? [modalController performSelector:@selector(presentingViewController)]
+    : [modalController parentViewController];
 
-  } else if (controller.popupViewController
-             && controller.popupViewController.superController == controller) {
+    if (parentViewController == controller) {
+      [self persistController:controller.modalViewController path:path];
+    }
+
+  } else if (controller.popupViewController &&
+             controller.popupViewController.superController == controller) {
     [self persistController:controller.popupViewController path:path];
   }
 }

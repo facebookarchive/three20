@@ -14,8 +14,9 @@
 // limitations under the License.
 //
 
-#import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
+// Navigator
 
+#import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
 #import "Three20UINavigator/TTURLObject.h"
 
 // - View Controllers
