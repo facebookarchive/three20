@@ -382,9 +382,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		BEF31F390F352DF5000DE5D2 /* Three20 */ = {
+		BEF31F390F352DF5000DE5D2 /* Threade20 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "Three20" */;
+			buildConfigurationList = BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "Threade20" */;
 			buildPhases = (
 				BEF31F360F352DF5000DE5D2 /* Headers */,
 				6E645F461187B01F00F08CB1 /* Protect Copied Headers */,
@@ -402,7 +402,7 @@
 				6EDAEA18118CA5CA0008133C /* PBXTargetDependency */,
 				6E7F968F118E355A00443B46 /* PBXTargetDependency */,
 			);
-			name = Three20;
+			name = Threade20;
 			productName = Three20;
 			productReference = BEF31F3A0F352DF5000DE5D2 /* libThree20.a */;
 			productType = "com.apple.product-type.library.static";
@@ -481,7 +481,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				BEF31F390F352DF5000DE5D2 /* Three20 */,
+				BEF31F390F352DF5000DE5D2 /* Threade20 */,
 				EB9E6C6110B6A8F800DE563C /* Three20UnitTests */,
 			);
 		};
@@ -651,7 +651,7 @@
 /* Begin PBXTargetDependency section */
 		66FC2E2A1265264C00F56B19 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BEF31F390F352DF5000DE5D2 /* Three20 */;
+			target = BEF31F390F352DF5000DE5D2 /* Threade20 */;
 			targetProxy = 66FC2E291265264C00F56B19 /* PBXContainerItemProxy */;
 		};
 		66FC2E2C1265264C00F56B19 /* PBXTargetDependency */ = {
@@ -844,7 +844,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "Three20" */ = {
+		BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "Threade20" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BEF31F3B0F352DF6000DE5D2 /* Debug */,
