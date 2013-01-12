@@ -55,20 +55,4 @@ TT_FIX_CATEGORY_BUG(UIWebViewAdditions)
   return CGRectMake(x, y, width, height);
 }
 
-#ifdef DEBUG
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)simulateTapElement:(NSString*)query {
-  CGRect frame = [self.window convertRect:self.frame fromView:self.superview];
-  CGRect pluginFrame = [self frameOfElement:query];
-  CGPoint tapPoint = CGPointMake(
-    frame.origin.x + pluginFrame.origin.x + pluginFrame.size.width/3,
-    frame.origin.y + pluginFrame.origin.y + pluginFrame.size.height/3
-  );
-  [self simulateTapAtPoint:tapPoint];
-}
-
-#endif
-
-
 @end
