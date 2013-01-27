@@ -134,7 +134,7 @@ const NSTimeInterval TTURLRequestUseQueueTimeout = -1.0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)description {
-  return [NSString stringWithFormat:@"<%@ %@>", [super description], _urlPath];
+  return [NSString stringWithFormat:@"<%@ %@>", [super description], self.urlPath];
 }
 
 
@@ -391,6 +391,16 @@ const NSTimeInterval TTURLRequestUseQueueTimeout = -1.0;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Properties
+
+- (NSString*)urlPath {
+    NSString *result = _urlPath;
+    if (_urlPath
+        && [_parameters count] > 0
+        && !([_httpMethod isEqualToString:@"POST"] || [_httpMethod isEqualToString:@"PUT"])){
+        result = [_urlPath stringByAddingQueryDictionary:self.parameters];
+    }
+    return result;
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
