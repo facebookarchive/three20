@@ -128,7 +128,7 @@ extern const NSTimeInterval TTURLRequestUseQueueTimeout;
 @property (nonatomic, copy) NSString* contentType;
 
 /**
- * Parameters to use for an HTTP POST/PUT.
+ * Parameters to use for an HTTP GET/POST/PUT.
  */
 @property (nonatomic, readonly) NSMutableDictionary* parameters;
 

@@ -29,6 +29,8 @@
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/NSStringAdditions.h"
+
 
 /**
  * Unit tests for the Network model found within Three20. These tests are a part of
@@ -141,6 +143,43 @@
 
   TT_RELEASE_SAFELY(model);
   TT_RELEASE_SAFELY(request);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testTTURLRequest_urlPath {
+    
+    NSBundle* testBundle = [NSBundle bundleWithIdentifier:@"com.facebook.three20.UnitTests"];
+    STAssertTrue(nil != testBundle, @"Unable to find the bundle %@", [NSBundle allBundles]);
+    
+    NSString* xmlDataPath = [[testBundle bundlePath]
+                             stringByAppendingPathComponent:@"testcase.xml"];
+    
+    TTURLRequest* request = [[TTURLRequest alloc] initWithURL:xmlDataPath delegate:nil];
+    
+    STAssertTrue([request.urlPath isEqualToString:xmlDataPath],
+                 @"The GET url path should be equal to the passed in the constructor");
+    
+    NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:
+                                @"value1", @"parameter1", @"value2", @"parameter2", nil];
+    [request.parameters addEntriesFromDictionary:parameters];
+    
+    STAssertFalse([request.urlPath isEqualToString:xmlDataPath],
+                  @"The GET url path should be different to the passed in the constructor.");
+    
+    STAssertTrue([request.urlPath isEqualToString:
+                  [xmlDataPath stringByAddingQueryDictionary:parameters]],
+                 @"The url is formed by adding the parameters to the query");
+    
+    request.httpMethod = @"POST";
+    STAssertTrue([request.urlPath isEqualToString:xmlDataPath],
+                 @"The POST url path should be the same to the passed in the constructor");
+    
+    request.httpMethod = @"PUT";
+    STAssertTrue([request.urlPath isEqualToString:xmlDataPath],
+                 @"The PUT url path should be the same to the passed in the constructor");
+    
+    TT_RELEASE_SAFELY(request);
 }
 
 
