@@ -31,7 +31,7 @@
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
 
-#import "Three20/Three20+Additions.h"
+#import <Three20/Three20+Additions.h>
 
 static const CGFloat kMoreButtonMargin = 40;
 
