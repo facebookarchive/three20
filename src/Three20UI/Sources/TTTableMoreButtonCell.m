@@ -30,6 +30,9 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
+
+#import "Three20/Three20+Additions.h"
+
 static const CGFloat kMoreButtonMargin = 40;
 
 
@@ -67,15 +70,7 @@ static const CGFloat kMoreButtonMargin = 40;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
-  CGFloat height = [super tableView:tableView rowHeightForObject:object];
-  CGFloat minHeight = TT_ROW_HEIGHT * 1.5;
-
-  if (height < minHeight) {
-    return minHeight;
-
-  } else {
-    return height;
-  }
+	return TT_ROW_HEIGHT*1.5;
 }
 
 
@@ -87,20 +82,54 @@ static const CGFloat kMoreButtonMargin = 40;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutSubviews {
-  [super layoutSubviews];
-
-  _activityIndicatorView.left = kMoreButtonMargin - (_activityIndicatorView.width + kTableCellSmallMargin);
-  _activityIndicatorView.top = floor(self.contentView.height/2 - _activityIndicatorView.height/2);
-
-  self.textLabel.frame = CGRectMake(kMoreButtonMargin, self.textLabel.top,
-                                    self.contentView.width - (kMoreButtonMargin + kTableCellSmallMargin),
-                                    self.textLabel.height);
-  self.detailTextLabel.frame = CGRectMake(kMoreButtonMargin, self.detailTextLabel.top,
-                                          self.contentView.width - (kMoreButtonMargin + kTableCellSmallMargin),
-                                          self.detailTextLabel.height);
-
+	[super layoutSubviews];
+	
+	BOOL hasDetailLabel = ((TTTableSubtitleItem*)_item).subtitle && ![((TTTableSubtitleItem*)_item).subtitle isEmptyOrWhitespace];
+	
+	[self.textLabel sizeToFit];
+	
+	CGFloat textWidth = self.textLabel.width;
+	CGFloat cellWidth = self.contentView.width;
+	CGFloat margin = 15.0;
+	
+	CGFloat textLeft = floor((cellWidth - textWidth)/2);
+	CGFloat activityLeft =  textLeft - margin - _activityIndicatorView.width;
+	
+	CGFloat textLabelTop = self.textLabel.top;
+    
+	if (hasDetailLabel) {
+		[self.detailTextLabel sizeToFit];
+		textWidth =  MAX(textWidth, self.detailTextLabel.width);
+	} else {
+		textLabelTop = floor(self.contentView.height/2 - self.textLabel.height/2);
+	}
+    
+	_activityIndicatorView.left = activityLeft;
+	_activityIndicatorView.top = floor(self.contentView.height/2 - _activityIndicatorView.height/2);
+	
+	self.textLabel.frame = CGRectMake(textLeft,
+									  textLabelTop,
+									  textWidth,
+									  self.textLabel.height);
+	
+	if (hasDetailLabel) {
+		self.detailTextLabel.frame = CGRectMake(textLeft,
+												self.textLabel.top + self.textLabel.height + 4,
+												textWidth,
+												self.detailTextLabel.height);
+		self.detailTextLabel.textColor = TTSTYLEVAR(moreLinkTextColor);
+		self.detailTextLabel.textAlignment = UITextAlignmentCenter;
+		self.detailTextLabel.hidden = NO;
+	} else {
+		self.detailTextLabel.frame = CGRectZero;
+		self.detailTextLabel.hidden = YES;
+	}
+    
+	
+	self.textLabel.font = [UIFont boldSystemFontOfSize:16.0];
+	self.textLabel.textAlignment = UITextAlignmentCenter;
+	
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
