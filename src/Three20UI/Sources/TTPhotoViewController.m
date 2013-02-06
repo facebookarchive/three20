@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 
+#pragma clang diagnostic ignored "-Wincompatible-pointer-types"
+
 #import "Three20UI/TTPhotoViewController.h"
 
 // UI

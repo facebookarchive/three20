@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 
+#pragma clang diagnostic ignored "-Wall"
+
 #import "Three20Style/TTBevelBorderStyle.h"
 
 // Style

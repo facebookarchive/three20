@@ -183,8 +183,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
       [body appendData:[[NSString
         stringWithFormat:@"Content-Length: %d\r\n", data.length]
           dataUsingEncoding:_charsetForMultipart]];
-      [body appendData:[[NSString
-        stringWithString:@"Content-Type: image/jpeg\r\n\r\n"]
+      [body appendData:[@"Content-Type: image/jpeg\r\n\r\n"
           dataUsingEncoding:_charsetForMultipart]];
       [body appendData:data];
       imageKey = key;

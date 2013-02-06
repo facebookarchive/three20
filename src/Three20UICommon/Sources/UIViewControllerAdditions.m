@@ -14,6 +14,10 @@
 // limitations under the License.
 //
 
+#pragma clang diagnostic ignored "-Wall"
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
+
 #import "Three20UICommon/UIViewControllerAdditions.h"
 
 // UICommon
