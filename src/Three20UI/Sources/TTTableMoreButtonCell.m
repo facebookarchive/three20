@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 
+#import "Three20Core/NSStringAdditions.h"
+
 #import "Three20UI/TTTableMoreButtonCell.h"
 
 // UI
@@ -31,7 +33,6 @@
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
 
-#import <Three20/Three20+Additions.h>
 
 static const CGFloat kMoreButtonMargin = 40;
 
