@@ -211,15 +211,65 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(BOOL)validateFont_family:(id *)ioValue error:(NSError **)outError {
-	// Validate correct system fonts.
-	if ( ![[UIFont familyNames] containsObject:(NSString*)*ioValue] ) {
-		NSString *error = [NSString stringWithFormat:@"iOS don't support the '%@' font family.",
-						   (NSString*)*ioValue];
-		*outError = [self formatError:error];
 
-		return NO;
-	}
-	return YES;
+    NSString *source = (NSString*)*ioValue;
+    // Source is nil, cut.
+    if ( source == nil ) {
+        NSString *error = @"Invalid value for font_family. Value is nil!";
+        *outError = [self formatError:error];
+        return NO;
+    }
+
+    //////////////////////////////////////////////////////////////////////
+    // Strip posible ' or " strings from source.
+    source = [source stringByTrimmingCharactersInSet:[NSCharacterSet
+                                                      characterSetWithCharactersInString:@"\"'"]];
+
+    NSString *fontFamily = nil;
+    NSString *fontName   = nil;
+
+    // Split Family and Name (if necessary).
+    NSArray *splitted = [source componentsSeparatedByString:@"-"];
+    fontFamily = [splitted objectAtIndex:0];
+    fontName   = ( [splitted count] > 1 ? [splitted objectAtIndex:1] : nil );
+
+    ////////// ///////// ///////// ///////// ///////// ///////// ///////// ///////// /////////
+	// Validate..
+    BOOL isFamilyAvailable, isNameAvailable;
+
+    // Validate Family checking with Available System Fonts.
+    NSArray *names = [UIFont familyNames];
+    isFamilyAvailable = [names containsObject:fontFamily];
+
+    ////////// ///////// ///////// ///////// ///////// ///////// ///////// ///////// /////////
+    // Family isn't available, cut with error.
+    if ( !isFamilyAvailable ) {
+        NSString *error = [NSString stringWithFormat:@"iOS don't support the '%@' font family.",
+                           fontFamily];
+        *outError = [self formatError:error];
+        return NO;
+    }
+
+    ////////// ///////// ///////// ///////// ///////// ///////// ///////// ///////// /////////
+	// Family is available and don't have a Name to check, nothing else to do..
+    if ( isFamilyAvailable && !fontFamily )
+        return YES;
+
+    ////////// ///////// ///////// ///////// ///////// ///////// ///////// ///////// /////////
+	// Validate Family Name checking with Avaiable Name for System Fonts.
+    NSArray *namesForFamily = [UIFont fontNamesForFamilyName:fontFamily];
+    isNameAvailable = [namesForFamily containsObject:source];
+
+	// Name is available and don't have a Name to check, nothing else to do..
+    if ( isNameAvailable )
+        return YES;
+
+    // Name isn't available, cut with error.
+    NSString *error =
+    [NSString stringWithFormat:@"iOS don't support the Name '%@' for the '%@' family.",
+                       fontName, fontFamily];
+    *outError = [self formatError:error];
+    return NO;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
