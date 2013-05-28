@@ -64,11 +64,10 @@ The Second option is to add it to your project manually.  Here is how:
      * Three20UI
      * Three20
 
-4. Now you need to link the Three20 static libraries to your project.  Select all of the
-   project items that you just added to the sidebar.  Under the "Details" table, you will see
-   a number of items, such as libThree20.a and libThree20Core.a.  Check the checkbox on the
-   far right for each of the `lib` files (not the UnitTests). This will link each part of the
-   Three20 framework to your app.
+4. Now you need to link the Three20 static libraries to your project. Select your Project Target. 
+   Under the "Build Phases" tab you will see "Link Binary With Libaries" section. Click on the 
+   "+" button, select "libThree20.a" and each of the other files, and select "Add". This will link 
+   each part of the Three20 framework to you app.
 
 5. Now you need to add Three20 as a dependency of your project, so Xcode compiles it whenever
    you compile your project.  Expand the "Targets" section of the sidebar and double-click your
@@ -87,8 +86,7 @@ The Second option is to add it to your project manually.  Here is how:
 
 8. Finally, we need to tell your project where to find the Three20 headers.  Open your
    "Project Settings" and go to the "Build" tab. Look for "Header Search Paths" and double-click
-   it.  Add the relative path from your project's directory to the
-   "three20/Build/Products/three20" directory.
+   it. Add these two "$(BUILT_PRODUCTS_DIR)/../three20" and "$(BUILT_PRODUCTS_DIR)/../../three20"
 
 9. While you are in Project Settings, go to "Other Linker Flags" under the "Linker" section, and
    add "-ObjC" and "-all_load" to the list of flags.
@@ -164,7 +162,7 @@ are visited the controllers will be created and displayed.  You can also registe
 actions that are called when a URL is visited.
 
 TTNavigator also persists and restores the full path of navigation controllers and modal
-view controllers, so your users can quite the app and come back exactly where they left off.
+view controllers, so your users can quit the app and come back exactly where they left off.
 
 Learn more at [Three20.info][]
 

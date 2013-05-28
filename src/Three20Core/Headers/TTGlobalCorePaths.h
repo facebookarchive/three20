@@ -27,6 +27,11 @@ BOOL TTIsBundleURL(NSString* URL);
 BOOL TTIsDocumentsURL(NSString* URL);
 
 /**
+ * @return YES if the URL begins with "cache://"
+ */
+BOOL TTIsCachesURL(NSString* URL);
+
+/**
  * Used by TTPathForBundleResource to construct the bundle path.
  *
  * Retains the given bundle.
@@ -53,3 +58,8 @@ NSString* TTPathForBundleResource(NSString* relativePath);
  * @return The documents path concatenated with the given relative path.
  */
 NSString* TTPathForDocumentsResource(NSString* relativePath);
+
+/**
+ * @return The caches path concatenated with the given relative path.
+ */
+NSString* TTPathForCachesResource(NSString* relativePath);
