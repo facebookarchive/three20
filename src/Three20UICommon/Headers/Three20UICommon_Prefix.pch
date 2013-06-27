@@ -1,9 +1,0 @@
-//
-// Prefix header for all source files of the 'Three20UICommon' target in the 'Three20UICommon' project
-//
-
-#ifdef __OBJC__
-  #import <Foundation/Foundation.h>
-  #import <UIKit/UIKit.h>
-#endif
-
