@@ -15,11 +15,11 @@ Still, as the library is not maintained anymore, it might be a good time to repl
 
 Lots of Three20's helpers are not needed anymore, as they are now present right in iOS.
 For other parts there are some really good replacement available. 
-If you're searching for a full replacement, [NimbusKit][http://nimbuskit.info] might help, they even provide a [migration guide][http://wiki.nimbuskit.info/Three20-Migration-Guide].
+If you're searching for a full replacement, [NimbusKit](http://nimbuskit.info) might help, they even provide a [migration guide](http://wiki.nimbuskit.info/Three20-Migration-Guide).
 
 Links
 ------
 
-[Three20 Mailing List][http://groups.google.com/group/three20/]
+[Three20 Mailing List](http://groups.google.com/group/three20/)
 
-[Three20 Tagged Questions on StackOverflow][http://stackoverflow.com/questions/tagged/three20]
+[Three20 Tagged Questions on StackOverflow](http://stackoverflow.com/questions/tagged/three20)
