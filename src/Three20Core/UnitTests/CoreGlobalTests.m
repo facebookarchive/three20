@@ -63,7 +63,7 @@
                  @"The latest major version has not been updated correctly.");
   STAssertEquals([Three20 minorVersion], 0,
                  @"The latest minor version has not been updated correctly.");
-  STAssertEquals([Three20 bugfixVersion], 11,
+  STAssertEquals([Three20 bugfixVersion], 12,
                  @"The latest bugfix version has not been updated correctly.");
   STAssertEquals([Three20 hotfixVersion], 0,
                  @"The latest hotfix version has not been updated correctly.");

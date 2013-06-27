@@ -741,7 +741,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = iphoneos;
 			};
 			name = Internal;
 		};
@@ -770,7 +769,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
-				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -781,7 +779,6 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
-				SDKROOT = iphoneos;
 				ZERO_LINK = NO;
 			};
 			name = Release;

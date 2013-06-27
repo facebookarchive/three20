@@ -65,7 +65,12 @@
 
 #if TARGET_IPHONE_SIMULATOR
 
+#ifdef __cplusplus
+  extern "C" __attribute__ ((visibility ("default"))) int TTIsInDebugger();
+#else
   int TTIsInDebugger();
+#endif
+
   // We leave the __asm__ in this macro so that when a break occurs, we don't have to step out of
   // a "breakInDebugger" function.
   #define TTDASSERT(xx) { if (!(xx)) { TTDPRINT(@"TTDASSERT failed: %s", #xx); \

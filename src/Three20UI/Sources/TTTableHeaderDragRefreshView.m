@@ -161,9 +161,8 @@
   if (newDate) {
     if (_lastUpdatedDate != newDate) {
       [_lastUpdatedDate release];
+       _lastUpdatedDate = [newDate retain];
     }
-
-    _lastUpdatedDate = [newDate retain];
 
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterShortStyle];
@@ -175,6 +174,7 @@
     [formatter release];
 
   } else {
+    [_lastUpdatedDate release];
     _lastUpdatedDate = nil;
     _lastUpdatedLabel.text = TTLocalizedString(@"Last updated: never",
                                                @"The table view has never been updated");

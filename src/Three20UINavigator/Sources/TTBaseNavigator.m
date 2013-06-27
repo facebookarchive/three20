@@ -250,6 +250,7 @@ __attribute__((weak_import));
       [_rootContainer navigator:self setRootViewController:_rootViewController];
 
     } else {
+      [self.window setRootViewController:_rootViewController];
       [self.window addSubview:_rootViewController.view];
     }
   }
@@ -345,9 +346,9 @@ __attribute__((weak_import));
     TT_RELEASE_SAFELY(_popoverController);
   }
 
-  _popoverController =  [[TTUIPopoverControllerClass() alloc] init];
+  _popoverController =  [[TTUIPopoverControllerClass() alloc]
+                         initWithContentViewController: controller];
   if (_popoverController != nil) {
-    [_popoverController setContentViewController:controller];
     [_popoverController setDelegate:self];
   }
 
