@@ -973,7 +973,8 @@ static const NSTimeInterval kOvershoot = 2;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)tween:(NSTimeInterval)t b:(NSTimeInterval)b c:(NSTimeInterval)c d:(NSTimeInterval)d {
-  return c*((t=t/d-1)*t*t + 1) + b;
+  t=t/d-1;
+  return c*(t*t*t + 1) + b;
 }
 
 
