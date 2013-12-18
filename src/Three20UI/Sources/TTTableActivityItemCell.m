@@ -15,6 +15,7 @@
 //
 
 #import "Three20UI/TTTableActivityItemCell.h"
+#import "Three20UI/UIViewAdditions.h"
 
 // UI
 #import "Three20UI/TTActivityLabel.h"
@@ -64,7 +65,7 @@
 - (void)layoutSubviews {
   [super layoutSubviews];
 
-  UITableView* tableView = (UITableView*)self.superview;
+  UITableView* tableView = (UITableView*)[self ancestorOrSelfWithClass:[UITableView class]];
   if (tableView.style == UITableViewStylePlain) {
     _activityLabel.frame = self.contentView.bounds;
   } else {
