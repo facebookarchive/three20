@@ -141,8 +141,9 @@
                   shadowColor:(UIColor*)shadowColor shadowOffset:(CGSize)shadowOffset
                 textAlignment:(UITextAlignment)textAlignment
             verticalAlignment:(UIControlContentVerticalAlignment)verticalAlignment
-                lineBreakMode:(UILineBreakMode)lineBreakMode numberOfLines:(NSInteger)numberOfLines
-                         next:(TTStyle*)next {
+                lineBreakMode:(NSLineBreakMode)lineBreakMode numberOfLines:(NSInteger)numberOfLines
+                         next:(TTStyle*)next
+{
   TTTextStyle* style = [[[self alloc] initWithNext:next] autorelease];
   style.font = font;
   style.color = color;

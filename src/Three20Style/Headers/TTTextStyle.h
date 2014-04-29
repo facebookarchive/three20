@@ -30,7 +30,7 @@
   UITextAlignment                   _textAlignment;
   UIControlContentVerticalAlignment _verticalAlignment;
 
-  UILineBreakMode _lineBreakMode;
+  NSLineBreakMode _lineBreakMode;
 }
 
 @property (nonatomic, retain) UIFont*   font;
@@ -45,7 +45,7 @@
 @property (nonatomic)         UITextAlignment                   textAlignment;
 @property (nonatomic)         UIControlContentVerticalAlignment verticalAlignment;
 
-@property (nonatomic)         UILineBreakMode lineBreakMode;
+@property (nonatomic)         NSLineBreakMode lineBreakMode;
 
 + (TTTextStyle*)styleWithFont:(UIFont*)font next:(TTStyle*)next;
 + (TTTextStyle*)styleWithColor:(UIColor*)color next:(TTStyle*)next;
@@ -64,7 +64,7 @@
                   shadowColor:(UIColor*)shadowColor shadowOffset:(CGSize)shadowOffset
                 textAlignment:(UITextAlignment)textAlignment
             verticalAlignment:(UIControlContentVerticalAlignment)verticalAlignment
-                lineBreakMode:(UILineBreakMode)lineBreakMode numberOfLines:(NSInteger)numberOfLines
+                lineBreakMode:(NSLineBreakMode)lineBreakMode numberOfLines:(NSInteger)numberOfLines
                          next:(TTStyle*)next;
 
 @end
