@@ -58,9 +58,9 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame { // Note: Used by Cozi shopping
   if (self = [super initWithFrame:frame]) {
-    _textAlignment  = UITextAlignmentLeft;
+    _textAlignment  = NSTextAlignmentLeft;
     _contentInset   = UIEdgeInsetsZero;
 
     self.font = TTSTYLEVAR(font);

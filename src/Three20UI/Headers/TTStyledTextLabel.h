@@ -31,7 +31,7 @@
   UIColor*          _textColor;
   UIColor*          _highlightedTextColor;
   UIFont*           _font;
-  UITextAlignment   _textAlignment;
+  NSTextAlignment   _textAlignment;
 
   UIEdgeInsets      _contentInset;
 
@@ -70,7 +70,7 @@
 /**
  * The alignment of the text. (NOT YET IMPLEMENTED)
  */
-@property (nonatomic) UITextAlignment textAlignment;
+@property (nonatomic) NSTextAlignment textAlignment;
 
 /**
  * The inset of the edges around the text.

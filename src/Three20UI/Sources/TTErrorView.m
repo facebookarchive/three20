@@ -60,14 +60,14 @@ static const CGFloat kHPadding  = 10;
     _titleView.backgroundColor = [UIColor clearColor];
     _titleView.textColor = TTSTYLEVAR(tableErrorTextColor);
     _titleView.font = TTSTYLEVAR(errorTitleFont);
-    _titleView.textAlignment = UITextAlignmentCenter;
+    _titleView.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_titleView];
 
     _subtitleView = [[UILabel alloc] init];
     _subtitleView.backgroundColor = [UIColor clearColor];
     _subtitleView.textColor = TTSTYLEVAR(tableErrorTextColor);
     _subtitleView.font = TTSTYLEVAR(errorSubtitleFont);
-    _subtitleView.textAlignment = UITextAlignmentCenter;
+    _subtitleView.textAlignment = NSTextAlignmentCenter;
     _subtitleView.numberOfLines = 0;
     [self addSubview:_subtitleView];
   }

@@ -23,7 +23,7 @@
   UIFont*         _font;
   UIColor*        _textColor;
   UIColor*        _spotlightColor;
-  UITextAlignment _textAlignment;
+  NSTextAlignment _textAlignment;
 
   NSTimer*        _timer;
   CGFloat         _spotlightPoint;
@@ -37,7 +37,7 @@
 @property (nonatomic, retain) UIFont*         font;
 @property (nonatomic, retain) UIColor*        textColor;
 @property (nonatomic, retain) UIColor*        spotlightColor;
-@property (nonatomic)         UITextAlignment textAlignment;
+@property (nonatomic)         NSTextAlignment textAlignment;
 
 - (void)startAnimating;
 - (void)stopAnimating;

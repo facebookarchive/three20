@@ -42,14 +42,14 @@
     self.textLabel.font = TTSTYLEVAR(tableFont);
     self.textLabel.textColor = TTSTYLEVAR(textColor);
     self.textLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
-    self.textLabel.textAlignment = UITextAlignmentLeft;
+    self.textLabel.textAlignment = NSTextAlignmentLeft;
     self.textLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     self.textLabel.adjustsFontSizeToFitWidth = YES;
 
     self.detailTextLabel.font = TTSTYLEVAR(font);
     self.detailTextLabel.textColor = TTSTYLEVAR(tableSubTextColor);
     self.detailTextLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
-    self.detailTextLabel.textAlignment = UITextAlignmentLeft;
+    self.detailTextLabel.textAlignment = NSTextAlignmentLeft;
     self.detailTextLabel.contentMode = UIViewContentModeTop;
     self.detailTextLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     self.detailTextLabel.numberOfLines = kTableMessageTextLineCount;

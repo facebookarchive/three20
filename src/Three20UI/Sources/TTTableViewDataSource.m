@@ -114,7 +114,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UITableViewCell*)tableView:(UITableView *)tableView
-                    cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+                    cellForRowAtIndexPath:(NSIndexPath *)indexPath { // Note: Used by cozi in Journal
   id object = [self tableView:tableView objectForRowAtIndexPath:indexPath];
 
   Class cellClass = [self tableView:tableView cellClassForObject:object];

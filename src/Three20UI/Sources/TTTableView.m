@@ -222,7 +222,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)layoutSubviews {
+- (void)layoutSubviews { // Note: Used by cozi in Journal
   [super layoutSubviews];
 
   if (!_showShadows || UITableViewStylePlain != self.style) {

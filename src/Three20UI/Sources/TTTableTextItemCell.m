@@ -126,34 +126,34 @@ static const CGFloat kMaxLabelHeight = 2000;
     if ([object isKindOfClass:[TTTableButton class]]) {
       self.textLabel.font = TTSTYLEVAR(tableButtonFont);
       self.textLabel.textColor = TTSTYLEVAR(linkTextColor);
-      self.textLabel.textAlignment = UITextAlignmentCenter;
+      self.textLabel.textAlignment = NSTextAlignmentCenter;
       self.accessoryType = UITableViewCellAccessoryNone;
       self.selectionStyle = TTSTYLEVAR(tableSelectionStyle);
 
     } else if ([object isKindOfClass:[TTTableLink class]]) {
       self.textLabel.font = TTSTYLEVAR(tableFont);
       self.textLabel.textColor = TTSTYLEVAR(linkTextColor);
-      self.textLabel.textAlignment = UITextAlignmentLeft;
+      self.textLabel.textAlignment = NSTextAlignmentLeft;
 
     } else if ([object isKindOfClass:[TTTableSummaryItem class]]) {
       self.textLabel.font = TTSTYLEVAR(tableSummaryFont);
       self.textLabel.textColor = TTSTYLEVAR(tableSubTextColor);
-      self.textLabel.textAlignment = UITextAlignmentCenter;
+      self.textLabel.textAlignment = NSTextAlignmentCenter;
 
     } else if ([object isKindOfClass:[TTTableLongTextItem class]]) {
       self.textLabel.font = TTSTYLEVAR(font);
       self.textLabel.textColor = TTSTYLEVAR(textColor);
-      self.textLabel.textAlignment = UITextAlignmentLeft;
+      self.textLabel.textAlignment = NSTextAlignmentLeft;
 
     } else if ([object isKindOfClass:[TTTableGrayTextItem class]]) {
       self.textLabel.font = TTSTYLEVAR(font);
       self.textLabel.textColor = TTSTYLEVAR(tableSubTextColor);
-      self.textLabel.textAlignment = UITextAlignmentLeft;
+      self.textLabel.textAlignment = NSTextAlignmentLeft;
 
     } else {
       self.textLabel.font = TTSTYLEVAR(tableFont);
       self.textLabel.textColor = TTSTYLEVAR(textColor);
-      self.textLabel.textAlignment = UITextAlignmentLeft;
+      self.textLabel.textAlignment = NSTextAlignmentLeft;
     }
   }
 }

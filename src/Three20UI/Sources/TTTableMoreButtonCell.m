@@ -119,7 +119,7 @@ static const CGFloat kMoreButtonMargin = 40;
 												textWidth,
 												self.detailTextLabel.height);
 		self.detailTextLabel.textColor = TTSTYLEVAR(moreLinkTextColor);
-		self.detailTextLabel.textAlignment = UITextAlignmentCenter;
+		self.detailTextLabel.textAlignment = NSTextAlignmentCenter;
 		self.detailTextLabel.hidden = NO;
 	} else {
 		self.detailTextLabel.frame = CGRectZero;
@@ -128,7 +128,7 @@ static const CGFloat kMoreButtonMargin = 40;
     
 	
 	self.textLabel.font = [UIFont boldSystemFontOfSize:16.0];
-	self.textLabel.textAlignment = UITextAlignmentCenter;
+	self.textLabel.textAlignment = NSTextAlignmentCenter;
 	
 }
 

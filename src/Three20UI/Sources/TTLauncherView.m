@@ -226,7 +226,7 @@ static const NSInteger kDefaultColumnCount = 3;
   label.textColor = RGBCOLOR(81,95,122);
   label.shadowColor = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
   label.shadowOffset = CGSizeMake(0,1);
-  label.textAlignment = UITextAlignmentCenter;
+  label.textAlignment = NSTextAlignmentCenter;
   label.numberOfLines = 0;
   [_scrollView addSubview:label];
 }
