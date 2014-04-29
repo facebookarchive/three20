@@ -48,7 +48,7 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
     self.textLabel.textColor = TTSTYLEVAR(textColor);
     self.textLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
     self.textLabel.textAlignment = UITextAlignmentLeft;
-    self.textLabel.lineBreakMode = UILineBreakModeTailTruncation;
+    self.textLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     self.textLabel.adjustsFontSizeToFitWidth = YES;
     self.textLabel.contentMode = UIViewContentModeLeft;
 
@@ -57,7 +57,7 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
     self.detailTextLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
     self.detailTextLabel.textAlignment = UITextAlignmentLeft;
     self.detailTextLabel.contentMode = UIViewContentModeTop;
-    self.detailTextLabel.lineBreakMode = UILineBreakModeTailTruncation;
+    self.detailTextLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     self.detailTextLabel.numberOfLines = kMessageTextLineCount;
     self.detailTextLabel.contentMode = UIViewContentModeLeft;
   }

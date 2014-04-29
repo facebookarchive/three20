@@ -42,13 +42,13 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithNext:(TTStyle*)next {
+- (id)initWithNext:(TTStyle*)next { // Note: used by Cozi in Journal
   if (self = [super initWithNext:next]) {
     _shadowOffset = CGSizeZero;
     _numberOfLines = 1;
     _textAlignment = UITextAlignmentCenter;
     _verticalAlignment = UIControlContentVerticalAlignmentCenter;
-    _lineBreakMode = UILineBreakModeTailTruncation;
+    _lineBreakMode = NSLineBreakByTruncatingTail;
   }
 
   return self;

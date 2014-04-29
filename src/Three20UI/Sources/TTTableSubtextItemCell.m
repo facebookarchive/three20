@@ -66,7 +66,7 @@
 
   CGSize detailTextSize = [item.text sizeWithFont:TTSTYLEVAR(tableFont)
                                 constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
-                                    lineBreakMode:UILineBreakModeTailTruncation];
+                                    lineBreakMode:NSLineBreakByTruncatingTail];
 
   CGSize textSize = [item.caption sizeWithFont:TTSTYLEVAR(font)
                              constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)

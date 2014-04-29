@@ -565,7 +565,7 @@
                   shadowOffset: TTSTYLEVAR(photoCaptionTextShadowOffset)
                  textAlignment: UITextAlignmentCenter
              verticalAlignment: UIControlContentVerticalAlignmentCenter
-                 lineBreakMode: UILineBreakModeTailTruncation
+                 lineBreakMode: NSLineBreakByTruncatingTail
                  numberOfLines: 6
                           next: nil]]]];
 }

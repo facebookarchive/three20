@@ -43,7 +43,7 @@ static const CGFloat kKeyWidth = 75;
     self.textLabel.textColor = TTSTYLEVAR(linkTextColor);
     self.textLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
     self.textLabel.textAlignment = UITextAlignmentRight;
-    self.textLabel.lineBreakMode = UILineBreakModeTailTruncation;
+    self.textLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     self.textLabel.numberOfLines = 1;
     self.textLabel.adjustsFontSizeToFitWidth = YES;
 

@@ -85,7 +85,7 @@ static const CGFloat kMaxLabelHeight = 2000;
   UIFont* font = [self textFontForItem:item];
   CGSize size = [item.text sizeWithFont:font
                       constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
-                          lineBreakMode:UILineBreakModeTailTruncation];
+                          lineBreakMode:NSLineBreakByTruncatingTail];
   if (size.height > kMaxLabelHeight) {
     size.height = kMaxLabelHeight;
   }
