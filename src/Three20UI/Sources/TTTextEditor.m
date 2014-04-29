@@ -141,7 +141,7 @@ static const CGFloat kUITextViewVerticalPadding = 6;
 
   CGSize textSize = [text sizeWithFont:self.font
                           constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
-                          lineBreakMode:UILineBreakModeWordWrap];
+                          lineBreakMode:NSLineBreakByWordWrapping];
 
   CGFloat newHeight = textSize.height;
   if ([text characterAtIndex:text.length-1] == 10) {

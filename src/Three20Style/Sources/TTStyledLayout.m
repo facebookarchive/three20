@@ -643,7 +643,7 @@
     // This is the only node, so measure it all at once and move on
     CGSize textSize = [text sizeWithFont:_font
                             constrainedToSize:CGSizeMake(_width, CGFLOAT_MAX)
-                            lineBreakMode:UILineBreakModeWordWrap];
+                            lineBreakMode:NSLineBreakByWordWrapping];
 	CGFloat textHeight = textSize.height;
     [self addFrameForText:text element:element node:textNode width:textSize.width
          height:textSize.height];
@@ -737,7 +737,7 @@
         NSString* lines = [text substringWithRange:searchRange];
         CGSize linesSize = [lines sizeWithFont:_font
                                   constrainedToSize:CGSizeMake(availWidth, CGFLOAT_MAX)
-                                  lineBreakMode:UILineBreakModeWordWrap];
+                                  lineBreakMode:NSLineBreakByWordWrapping];
 
         [self addFrameForText:lines element:element node:textNode width:linesSize.width
              height:linesSize.height];

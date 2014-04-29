@@ -44,7 +44,7 @@
     self.textLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
     self.textLabel.textAlignment = UITextAlignmentLeft;
     self.textLabel.contentMode = UIViewContentModeTop;
-    self.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+    self.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.textLabel.numberOfLines = 0;
   }
 
@@ -70,7 +70,7 @@
 
   CGSize textSize = [item.caption sizeWithFont:TTSTYLEVAR(font)
                              constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
-                                 lineBreakMode:UILineBreakModeWordWrap];
+                                 lineBreakMode:NSLineBreakByWordWrapping];
 
   return kTableCellVPadding*2 + detailTextSize.height + textSize.height;
 }
