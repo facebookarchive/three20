@@ -135,8 +135,8 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
     controller = navController.topViewController;
   }
 
-  if (controller.modalViewController) {
-    return [TTBaseNavigator frontViewControllerForController:controller.modalViewController];
+  if (controller.presentedViewController) {
+    return [TTBaseNavigator frontViewControllerForController:controller.presentedViewController];
 
   } else {
     return controller;
@@ -248,22 +248,17 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
 - (void)presentModalController: (UIViewController*)controller
               parentController: (UIViewController*)parentController
                       animated: (BOOL)animated
-                    transition: (NSInteger)transition {
-  controller.modalTransitionStyle = transition;
-
-  if ([controller isKindOfClass:[UINavigationController class]]) {
-    [parentController presentModalViewController: controller
-                                        animated: animated];
-
-  } else {
-    UINavigationController* navController = [[[[self navigationControllerClass] alloc] init] autorelease];
-    [navController pushViewController: controller
-                             animated: NO];
-    [parentController presentModalViewController: navController
-                                        animated: animated];
-  }
+                    transition: (NSInteger)transition
+{
+	controller.modalTransitionStyle = transition;
+	if ([controller isKindOfClass:[UINavigationController class]]) {
+		[parentController presentViewController:controller animated:animated completion:nil];
+	} else {
+		UINavigationController* navController = [[[[self navigationControllerClass] alloc] init] autorelease];
+		[navController pushViewController: controller animated: NO];
+		[parentController presentViewController:navController animated:animated completion:nil];
+	}
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
@@ -499,7 +494,7 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
 - (UIViewController*)visibleViewController {
   UIViewController* controller = _rootViewController;
   while (nil != controller) {
-    UIViewController* child = controller.modalViewController;
+    UIViewController* child = controller.presentedViewController;
 
     if (nil == child) {
       child = [self getVisibleChildController:controller];
@@ -522,7 +517,7 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
   while (controller) {
     UIViewController* child = controller.popupViewController;
     if (!child || ![child canBeTopViewController]) {
-      child = controller.modalViewController;
+      child = controller.presentedViewController;
     }
     if (!child) {
       child = controller.topSubcontroller;
@@ -751,9 +746,9 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
   }
   [controller persistNavigationPath:path];
 
-  if (controller.modalViewController
-      && controller.modalViewController.parentViewController == controller) {
-    [self persistController:controller.modalViewController path:path];
+  if (controller.presentedViewController
+      && controller.presentedViewController.parentViewController == controller) {
+    [self persistController:controller.presentedViewController path:path];
   } else if (controller.popupViewController
              && controller.popupViewController.superController == controller) {
     [self persistController:controller.popupViewController path:path];
