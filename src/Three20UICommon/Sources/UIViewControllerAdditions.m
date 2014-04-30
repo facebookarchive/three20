@@ -318,7 +318,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dismissModalViewController {
-	[self dismissViewControllerAnimated:YES completion:nil];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
