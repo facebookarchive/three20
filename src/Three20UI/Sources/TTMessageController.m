@@ -34,6 +34,7 @@
 
 // UICommon
 #import "Three20UICommon/TTGlobalUICommon.h"
+#import "Three20UICommon/TTRotationUtil.h"
 #import "Three20UICommon/UIViewControllerAdditions.h"
 
 // Style
@@ -374,10 +375,13 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  return TTIsSupportedOrientation(interfaceOrientation);
+- (BOOL)shouldAutorotate {
+    return [TTRotationUtil shouldAutorotate];
 }
 
+- (NSUInteger)supportedInterfaceOrientations {
+	return [TTRotationUtil supportedInterfaceOrientations];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {

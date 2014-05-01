@@ -18,6 +18,7 @@
 
 // UICommon
 #import "Three20UICommon/TTGlobalUICommon.h"
+#import "Three20UICommon/TTRotationUtil.h"
 #import "Three20UICommon/UIViewControllerAdditions.h"
 
 // UICommon (Private)
@@ -206,20 +207,27 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  if (TTIsPad()) {
-    return YES;
-  } else {
-    UIViewController* popup = [self popupViewController];
-    if (popup) {
-      return [popup shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+- (BOOL)shouldAutorotate {
 
-    } else {
-      return [super shouldAutorotateToInterfaceOrientation:interfaceOrientation];
-    }
-  }
+// Code used to look like this:
+//	if (TTIsPad()) {
+//		return YES;
+//	} else {
+//		UIViewController* popup = [self popupViewController];
+//		if (popup) {
+//			return [popup shouldAutorotate];
+//
+//		} else {
+//			return [super shouldAutorotate];
+//		}
+//	}
+
+	return [TTRotationUtil shouldAutorotate];
 }
 
+- (NSUInteger)supportedInterfaceOrientations {
+	return [TTRotationUtil supportedInterfaceOrientations];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation

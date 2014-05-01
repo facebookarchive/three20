@@ -38,6 +38,7 @@
 
 // UICommon
 #import "Three20UICommon/TTGlobalUICommon.h"
+#import "Three20UICommon/TTRotationUtil.h"
 #import "Three20UICommon/UIViewControllerAdditions.h"
 
 // Style
@@ -545,10 +546,13 @@ static const NSInteger kActivityLabelTag          = 96;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  return TTIsSupportedOrientation(interfaceOrientation);
+- (BOOL)shouldAutorotate {
+    return [TTRotationUtil shouldAutorotate];
 }
 
+- (NSUInteger)supportedInterfaceOrientations {
+	return [TTRotationUtil supportedInterfaceOrientations];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
